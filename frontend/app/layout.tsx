@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://soupai.dev"),
     title: "SOUP AI — Building Fast, Intelligent Digital Experiences",
     description:
         "We build high-performance websites, scalable SaaS platforms, and AI-powered automation for startups and businesses. Modern tech, custom design, fast delivery.",
