@@ -62,7 +62,7 @@ export default function Contact() {
                     description="Tell us about your project and we'll get back to you within 24 hours."
                 />
 
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-20 mt-20">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-20 mt-14 sm:mt-20">
                     {/* Left: Info */}
                     <motion.div
                         variants={staggerContainer}
@@ -126,7 +126,7 @@ export default function Contact() {
                         viewport={{ once: true, margin: "-80px" }}
                         className="lg:col-span-3"
                     >
-                        <div className="glass-card p-10 sm:p-12 rounded-2xl">
+                        <div className="glass-card p-6 sm:p-8 lg:p-12 rounded-2xl">
                             {isSubmitted ? (
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.95 }}
@@ -140,8 +140,8 @@ export default function Contact() {
                                     <p className="text-text-muted text-[14px] font-light">We&apos;ll get back to you within 24 hours.</p>
                                 </motion.div>
                             ) : (
-                                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                                         <div>
                                             <label htmlFor="name" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-3">Name <span className="text-error">*</span></label>
                                             <input id="name" type="text" placeholder="Your name" {...register("name")} className={inputCls} />
@@ -154,7 +154,7 @@ export default function Contact() {
                                         </div>
                                     </div>
 
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                                         <div>
                                             <label htmlFor="company" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-3">Company</label>
                                             <input id="company" type="text" placeholder="Your company" {...register("company")} className={inputCls} />

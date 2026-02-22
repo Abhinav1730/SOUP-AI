@@ -39,7 +39,7 @@ export default function Process() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-80px" }}
-                    className="hidden lg:block mt-24"
+                    className="hidden lg:block mt-28"
                 >
                     <div className="relative">
                         {/* Line */}
@@ -49,7 +49,7 @@ export default function Process() {
                             {PROCESS_STEPS.map((step, i) => (
                                 <motion.div key={i} variants={fadeInUp} className="relative text-center group">
                                     {/* Circle */}
-                                    <div className="relative z-10 w-14 h-14 mx-auto rounded-2xl bg-bg-secondary border border-white/[0.06] flex items-center justify-center mb-10 group-hover:border-accent-indigo/25 group-hover:bg-accent-indigo/5 transition-all duration-500">
+                                    <div className="relative z-10 w-14 h-14 mx-auto rounded-2xl bg-bg-secondary border border-white/[0.06] flex items-center justify-center mb-12 group-hover:border-accent-indigo/25 group-hover:bg-accent-indigo/5 transition-all duration-500">
                                         <div className="text-text-dim group-hover:text-accent-indigo transition-colors duration-500">
                                             {stepIcons[i]}
                                         </div>
@@ -58,7 +58,7 @@ export default function Process() {
                                         </div>
                                     </div>
 
-                                    <h4 className="text-[14px] font-semibold text-text-primary mb-3">
+                                    <h4 className="text-[14px] font-semibold text-text-primary mb-4">
                                         {step.title}
                                     </h4>
                                     <p className="text-[12.5px] text-text-muted leading-[1.8] font-light px-2">
@@ -76,11 +76,11 @@ export default function Process() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-80px" }}
-                    className="lg:hidden mt-16"
+                    className="lg:hidden mt-20"
                 >
                     <div className="relative">
                         <div className="absolute top-0 bottom-0 left-7 w-[1px] bg-gradient-to-b from-white/[0.06] via-white/[0.04] to-transparent" />
-                        <div className="space-y-12">
+                        <div className="space-y-14">
                             {PROCESS_STEPS.map((step, i) => (
                                 <motion.div key={i} variants={fadeInUp} className="relative flex gap-6">
                                     <div className="relative z-10 flex-shrink-0 w-14 h-14 rounded-2xl bg-bg-secondary border border-white/[0.06] flex items-center justify-center">
@@ -90,7 +90,7 @@ export default function Process() {
                                         </div>
                                     </div>
                                     <div className="pt-2">
-                                        <h4 className="text-[15px] font-semibold text-text-primary mb-2">
+                                        <h4 className="text-[15px] font-semibold text-text-primary mb-3">
                                             {step.title}
                                         </h4>
                                         <p className="text-[13.5px] text-text-muted leading-[1.8] font-light">

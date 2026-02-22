@@ -39,7 +39,7 @@ export default function Projects() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-80px" }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 mt-14 sm:mt-20"
                 >
                     {PROJECTS.map((project, i) => (
                         <motion.div
@@ -48,7 +48,7 @@ export default function Projects() {
                             className="group glass-card rounded-2xl overflow-hidden glass-card-interactive"
                         >
                             {/* Thumbnail area */}
-                            <div className="relative h-52 sm:h-56 overflow-hidden bg-bg-secondary">
+                            <div className="relative h-44 sm:h-52 lg:h-56 overflow-hidden bg-bg-secondary">
                                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent" />
                                 <div className="absolute inset-0 line-grid opacity-40" />
 
@@ -65,9 +65,9 @@ export default function Projects() {
                             </div>
 
                             {/* Content */}
-                            <div className="p-8 sm:p-10">
-                                <div className="flex items-start justify-between mb-5 gap-4">
-                                    <h3 className="text-[17px] font-semibold text-text-primary group-hover:text-accent-indigo transition-colors duration-300">
+                            <div className="p-6 sm:p-8 lg:p-12">
+                                <div className="flex items-start justify-between mb-4 sm:mb-6 gap-4">
+                                    <h3 className="text-[15px] sm:text-[17px] font-semibold text-text-primary group-hover:text-accent-indigo transition-colors duration-300">
                                         {project.title}
                                     </h3>
                                     <div className="flex-shrink-0 w-8 h-8 rounded-lg border border-white/[0.06] flex items-center justify-center group-hover:border-accent-indigo/20 group-hover:bg-accent-indigo/5 transition-all duration-300">
@@ -75,7 +75,7 @@ export default function Projects() {
                                     </div>
                                 </div>
 
-                                <p className="text-[14.5px] text-text-muted leading-[1.85] font-light mb-7">
+                                <p className="text-[13.5px] sm:text-[14.5px] text-text-muted leading-[1.8] sm:leading-[1.9] font-light mb-5 sm:mb-8">
                                     {project.description}
                                 </p>
 
