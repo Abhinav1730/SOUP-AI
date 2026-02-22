@@ -34,11 +34,11 @@ export default function Footer() {
                                 SOUP <span className="gradient-text">AI</span>
                             </span>
                         </div>
-                        <p className="text-[13px] text-text-muted leading-relaxed max-w-sm mb-6 font-light">
+                        <p className="text-[13px] text-text-muted leading-[1.85] max-w-sm mb-7 font-light">
                             Building fast, intelligent digital experiences for startups and
                             businesses worldwide. Bold ideas into polished products.
                         </p>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-3">
                             {Object.entries(SOCIAL_LINKS).map(([key, url]) => (
                                 <a
                                     key={key}
@@ -57,7 +57,7 @@ export default function Footer() {
                     {/* Links */}
                     <motion.div variants={fadeInUp} className="md:col-span-3">
                         <h4 className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.15em] mb-5">Navigation</h4>
-                        <ul className="space-y-3">
+                        <ul className="space-y-4">
                             {NAV_LINKS.map((link) => (
                                 <li key={link.href}>
                                     <button onClick={() => scrollTo(link.href)} className="text-[13px] text-text-muted hover:text-text-primary transition-colors duration-300 font-light">
@@ -71,7 +71,7 @@ export default function Footer() {
                     {/* Contact */}
                     <motion.div variants={fadeInUp} className="md:col-span-4">
                         <h4 className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.15em] mb-5">Get in Touch</h4>
-                        <ul className="space-y-3 text-[13px] text-text-muted font-light">
+                        <ul className="space-y-4 text-[13px] text-text-muted font-light">
                             <li><a href="mailto:tech.soup.ai@gmail.com" className="hover:text-text-primary transition-colors">tech.soup.ai@gmail.com</a></li>
                             <li>Remote — Working Globally</li>
                             <li>Mon–Sat, 9AM–7PM IST</li>

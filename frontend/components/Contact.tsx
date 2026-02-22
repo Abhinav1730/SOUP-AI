@@ -72,10 +72,10 @@ export default function Contact() {
                         className="lg:col-span-2 space-y-12"
                     >
                         <motion.div variants={slideInLeft}>
-                            <h3 className="text-[18px] font-semibold text-text-primary mb-3">
+                            <h3 className="text-[18px] font-semibold text-text-primary mb-4">
                                 Start a Conversation
                             </h3>
-                            <p className="text-[14px] text-text-muted leading-relaxed font-light">
+                            <p className="text-[14.5px] text-text-muted leading-[1.85] font-light">
                                 Whether you need a website, a SaaS platform, or an AI-powered
                                 solution — we&apos;re here to help.
                             </p>
@@ -87,12 +87,12 @@ export default function Contact() {
                                 { icon: <Clock size={16} />, label: "Response", value: "Within 24 hours" },
                                 { icon: <MapPin size={16} />, label: "Location", value: "Remote — Global" },
                             ].map((item, i) => (
-                                <div key={i} className="flex items-center gap-4">
+                                <div key={i} className="flex items-center gap-5">
                                     <div className="icon-box w-10 h-10 rounded-xl text-accent-indigo">
                                         {item.icon}
                                     </div>
                                     <div>
-                                        <div className="text-[11px] uppercase tracking-[0.1em] text-text-dim font-medium mb-0.5">{item.label}</div>
+                                        <div className="text-[11px] uppercase tracking-[0.1em] text-text-dim font-medium mb-1">{item.label}</div>
                                         {item.href ? (
                                             <a href={item.href} className="text-[13.5px] text-text-primary hover:text-accent-indigo transition-colors font-medium">{item.value}</a>
                                         ) : (
@@ -140,15 +140,15 @@ export default function Contact() {
                                     <p className="text-text-muted text-[14px] font-light">We&apos;ll get back to you within 24 hours.</p>
                                 </motion.div>
                             ) : (
-                                <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                         <div>
-                                            <label htmlFor="name" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-2">Name <span className="text-error">*</span></label>
+                                            <label htmlFor="name" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-3">Name <span className="text-error">*</span></label>
                                             <input id="name" type="text" placeholder="Your name" {...register("name")} className={inputCls} />
                                             {errors.name && <p className="mt-1.5 text-[11px] text-error">{errors.name.message}</p>}
                                         </div>
                                         <div>
-                                            <label htmlFor="email" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-2">Email <span className="text-error">*</span></label>
+                                            <label htmlFor="email" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-3">Email <span className="text-error">*</span></label>
                                             <input id="email" type="email" placeholder="you@company.com" {...register("email")} className={inputCls} />
                                             {errors.email && <p className="mt-1.5 text-[11px] text-error">{errors.email.message}</p>}
                                         </div>
@@ -156,11 +156,11 @@ export default function Contact() {
 
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                         <div>
-                                            <label htmlFor="company" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-2">Company</label>
+                                            <label htmlFor="company" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-3">Company</label>
                                             <input id="company" type="text" placeholder="Your company" {...register("company")} className={inputCls} />
                                         </div>
                                         <div>
-                                            <label htmlFor="budget" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-2">Budget <span className="text-error">*</span></label>
+                                            <label htmlFor="budget" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-3">Budget <span className="text-error">*</span></label>
                                             <select id="budget" {...register("budget")} className={`${inputCls} appearance-none cursor-pointer`} defaultValue="">
                                                 <option value="" disabled className="bg-bg-secondary text-text-dim">Select budget</option>
                                                 {BUDGET_OPTIONS.map((o) => <option key={o} value={o} className="bg-bg-secondary text-text-primary">{o}</option>)}
@@ -170,7 +170,7 @@ export default function Contact() {
                                     </div>
 
                                     <div>
-                                        <label htmlFor="message" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-2">Project Details <span className="text-error">*</span></label>
+                                        <label htmlFor="message" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-3">Project Details <span className="text-error">*</span></label>
                                         <textarea id="message" rows={5} placeholder="Tell us about your project, goals, and timeline..." {...register("message")} className={`${inputCls} resize-none`} />
                                         {errors.message && <p className="mt-1.5 text-[11px] text-error">{errors.message.message}</p>}
                                     </div>

@@ -36,7 +36,7 @@ export default function CTABanner() {
                         <div className="relative z-10">
                             <motion.h2
                                 variants={fadeInUp}
-                                className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-text-primary mb-5 leading-[1.15]"
+                                className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-text-primary mb-7 leading-[1.2]"
                             >
                                 Ready to Build Your Next
                                 <br />
@@ -45,13 +45,13 @@ export default function CTABanner() {
 
                             <motion.p
                                 variants={fadeInUp}
-                                className="text-text-muted text-base lg:text-lg max-w-lg mx-auto mb-12 font-light leading-relaxed"
+                                className="text-text-muted text-base lg:text-lg max-w-lg mx-auto mb-10 font-light leading-[1.8]"
                             >
                                 Let&apos;s talk about your project. No commitments, no hidden costs —
                                 just an honest conversation about what&apos;s possible.
                             </motion.p>
 
-                            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center gap-5">
                                 <button onClick={() => scrollTo("#contact")} className="btn-primary w-full sm:w-auto">
                                     <span>Get Your Free Consultation</span>
                                     <ArrowRight size={17} />

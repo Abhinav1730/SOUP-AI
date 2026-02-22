@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, BarChart3, Bot, Mic, Utensils } from "lucide-react";
 import { fadeInUp, staggerContainerSlow } from "@/lib/animations";
@@ -16,8 +15,17 @@ const projectIcons = [
 
 export default function Projects() {
     return (
-        <section id="projects" className="section-padding section-alt relative">
+        <section id="projects" className="section-padding section-alt relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 section-divider" />
+
+            {/* Background visual — device mockups as ambient layer */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <img
+                    src="/images/projects-devices.png"
+                    alt=""
+                    className="w-full max-w-[800px] h-auto opacity-[0.05]"
+                />
+            </div>
 
             <div className="container-custom relative z-10">
                 <SectionHeading
@@ -26,32 +34,12 @@ export default function Projects() {
                     description="Recent work where we helped businesses transform their digital presence."
                 />
 
-                {/* Device mockup showcase */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.15 }}
-                    viewport={{ once: true }}
-                    className="flex justify-center mt-16 mb-4"
-                >
-                    <div className="relative w-full max-w-[600px]">
-                        <div className="absolute inset-0 bg-accent-cyan/[0.04] blur-[80px] rounded-full scale-75" />
-                        <Image
-                            src="/images/projects-devices.png"
-                            alt="Our work across platforms — web, mobile, and tablet"
-                            width={600}
-                            height={600}
-                            className="relative z-10 w-full h-auto opacity-85"
-                        />
-                    </div>
-                </motion.div>
-
                 <motion.div
                     variants={staggerContainerSlow}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-80px" }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16"
                 >
                     {PROJECTS.map((project, i) => (
                         <motion.div
@@ -59,9 +47,8 @@ export default function Projects() {
                             variants={fadeInUp}
                             className="group glass-card rounded-2xl overflow-hidden glass-card-interactive"
                         >
-                            {/* Thumbnail area — hover zoom */}
+                            {/* Thumbnail area */}
                             <div className="relative h-52 sm:h-56 overflow-hidden bg-bg-secondary">
-                                {/* Subtle gradient bg */}
                                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent" />
                                 <div className="absolute inset-0 line-grid opacity-40" />
 
@@ -72,16 +59,14 @@ export default function Projects() {
                                     </div>
                                 </div>
 
-                                {/* Hover overlay gradient */}
+                                {/* Hover effects */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-accent-indigo/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                                {/* Hover sweep */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.015] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
                             </div>
 
-                            {/* Content — p-8 */}
-                            <div className="p-10">
-                                <div className="flex items-start justify-between mb-4 gap-4">
+                            {/* Content */}
+                            <div className="p-8 sm:p-10">
+                                <div className="flex items-start justify-between mb-5 gap-4">
                                     <h3 className="text-[17px] font-semibold text-text-primary group-hover:text-accent-indigo transition-colors duration-300">
                                         {project.title}
                                     </h3>
@@ -90,19 +75,19 @@ export default function Projects() {
                                     </div>
                                 </div>
 
-                                <p className="text-[14px] text-text-muted leading-relaxed font-light mb-6">
+                                <p className="text-[14.5px] text-text-muted leading-[1.85] font-light mb-7">
                                     {project.description}
                                 </p>
 
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-2.5">
                                     {project.tags.map((tag) => (
                                         <span key={tag} className="tech-tag">{tag}</span>
                                     ))}
                                 </div>
 
-                                {/* View Case Study — slides up on hover */}
-                                <div className="mt-6 overflow-hidden h-0 group-hover:h-8 transition-all duration-500 ease-out">
-                                    <span className="text-[13px] text-accent-indigo font-medium flex items-center gap-1.5 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                {/* View Case Study */}
+                                <div className="mt-7 overflow-hidden h-0 group-hover:h-8 transition-all duration-500 ease-out">
+                                    <span className="text-[13px] text-accent-indigo font-medium flex items-center gap-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                                         View Case Study <ArrowUpRight size={12} />
                                     </span>
                                 </div>

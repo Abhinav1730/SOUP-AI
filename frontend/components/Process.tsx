@@ -61,7 +61,7 @@ export default function Process() {
                                     <h4 className="text-[14px] font-semibold text-text-primary mb-3">
                                         {step.title}
                                     </h4>
-                                    <p className="text-[12.5px] text-text-muted leading-relaxed font-light px-1">
+                                    <p className="text-[12.5px] text-text-muted leading-[1.8] font-light px-2">
                                         {step.description}
                                     </p>
                                 </motion.div>
@@ -90,10 +90,10 @@ export default function Process() {
                                         </div>
                                     </div>
                                     <div className="pt-2">
-                                        <h4 className="text-[15px] font-semibold text-text-primary mb-1">
+                                        <h4 className="text-[15px] font-semibold text-text-primary mb-2">
                                             {step.title}
                                         </h4>
-                                        <p className="text-[13px] text-text-muted leading-relaxed font-light">
+                                        <p className="text-[13.5px] text-text-muted leading-[1.8] font-light">
                                             {step.description}
                                         </p>
                                     </div>

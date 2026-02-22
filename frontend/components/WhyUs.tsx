@@ -17,25 +17,25 @@ export default function WhyUs() {
                     description="We don't just build products — we engineer competitive advantages."
                 />
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-24 mt-20 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 mt-16 items-center">
                     {/* Left: Points */}
                     <motion.div
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-80px" }}
-                        className="space-y-10"
+                        className="space-y-8"
                     >
                         {WHY_US_POINTS.map((point, i) => (
-                            <motion.div key={i} variants={slideInLeft} className="flex gap-6 group">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-accent-indigo mt-0.5 group-hover:bg-accent-indigo/10 group-hover:border-accent-indigo/20 transition-all duration-300">
+                            <motion.div key={i} variants={slideInLeft} className="flex gap-5 group">
+                                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-accent-indigo mt-0.5 group-hover:bg-accent-indigo/10 group-hover:border-accent-indigo/20 transition-all duration-300">
                                     <Check size={16} strokeWidth={2.5} />
                                 </div>
                                 <div>
-                                    <h4 className="text-[16px] font-semibold text-text-primary mb-2 tracking-[-0.01em]">
+                                    <h4 className="text-[16px] font-semibold text-text-primary mb-2.5 tracking-[-0.01em]">
                                         {point.title}
                                     </h4>
-                                    <p className="text-[14px] text-text-muted leading-relaxed font-light">
+                                    <p className="text-[14.5px] text-text-muted leading-[1.85] font-light">
                                         {point.description}
                                     </p>
                                 </div>

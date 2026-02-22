@@ -50,7 +50,7 @@ export default function StatsBar() {
                                 className={`text-center ${i < stats.length - 1 ? "lg:border-r lg:border-white/[0.05]" : ""
                                     }`}
                             >
-                                <div className="text-3xl sm:text-4xl font-bold gradient-text-strong mb-1.5 tracking-tight">
+                                <div className="text-3xl sm:text-4xl font-bold gradient-text-strong mb-3 tracking-tight">
                                     <Counter target={stat.value} suffix={stat.suffix} />
                                 </div>
                                 <div className="text-[12px] uppercase tracking-[0.1em] text-text-dim font-medium">

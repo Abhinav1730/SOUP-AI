@@ -23,33 +23,33 @@ export default function Testimonials() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-80px" }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20"
+                    className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
                 >
                     {TESTIMONIALS.map((testimonial, i) => (
                         <motion.div
                             key={i}
                             variants={fadeInUp}
-                            className="glass-card glass-card-interactive p-10 rounded-2xl relative"
+                            className="glass-card glass-card-interactive p-9 sm:p-10 rounded-2xl relative"
                         >
                             {/* Stars */}
-                            <div className="flex items-center gap-0.5 mb-8">
+                            <div className="flex items-center gap-1 mb-6">
                                 {[...Array(5)].map((_, j) => (
                                     <Star key={j} size={13} className="fill-amber-400/70 text-amber-400/70" />
                                 ))}
                             </div>
 
-                            {/* Quote */}
-                            <p className="text-[14.5px] text-text-secondary leading-[1.75] font-light mb-10">
+                            {/* Quote — generous line-height */}
+                            <p className="text-[14.5px] text-text-secondary leading-[1.85] font-light mb-8">
                                 &ldquo;{testimonial.content}&rdquo;
                             </p>
 
                             {/* Author */}
-                            <div className="flex items-center gap-3.5">
+                            <div className="flex items-center gap-4">
                                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-indigo/60 to-accent-cyan/40 flex items-center justify-center text-white text-[12px] font-bold">
                                     {testimonial.avatar}
                                 </div>
                                 <div>
-                                    <div className="text-[13.5px] font-semibold text-text-primary">{testimonial.name}</div>
+                                    <div className="text-[13.5px] font-semibold text-text-primary mb-0.5">{testimonial.name}</div>
                                     <div className="text-[12px] text-text-dim font-light">{testimonial.role}</div>
                                 </div>
                             </div>
