@@ -16,10 +16,12 @@ export default function Hero() {
 
             {/* Background visual layer — workspace image, very subtle */}
             <div className="absolute inset-0 pointer-events-none">
-                <img
+                <Image
                     src="/images/hero-visual.png"
                     alt=""
-                    className="w-full h-full object-cover opacity-[0.05]"
+                    fill
+                    className="object-cover opacity-[0.05]"
+                    priority
                 />
                 <div className="absolute inset-0 bg-bg-primary/60" />
             </div>
@@ -30,10 +32,10 @@ export default function Hero() {
             {/* Radial glow behind text */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.12)_0%,transparent_60%)] pointer-events-none" />
 
-            {/* Floating gradient blobs */}
-            <div className="absolute -top-32 -left-32 w-[700px] h-[700px] rounded-full bg-accent-indigo/[0.05] blur-[160px] animate-float" />
-            <div className="absolute top-[15%] right-[-8%] w-[500px] h-[500px] rounded-full bg-accent-cyan/[0.03] blur-[140px] animate-float-reverse" />
-            <div className="absolute bottom-[-15%] left-[25%] w-[600px] h-[600px] rounded-full bg-accent-purple/[0.04] blur-[150px] animate-float-slow" />
+            {/* Floating gradient blobs - reduced blur for performance */}
+            <div className="absolute -top-32 -left-32 w-[700px] h-[700px] rounded-full bg-accent-indigo/[0.05] blur-[80px] animate-float" />
+            <div className="absolute top-[15%] right-[-8%] w-[500px] h-[500px] rounded-full bg-accent-cyan/[0.03] blur-[80px] animate-float-reverse" />
+            <div className="absolute bottom-[-15%] left-[25%] w-[600px] h-[600px] rounded-full bg-accent-purple/[0.04] blur-[80px] animate-float-slow" />
 
             {/* Rotating geometric ring */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
@@ -61,7 +63,7 @@ export default function Hero() {
                     className="max-w-4xl mx-auto text-center"
                 >
                     {/* Badge */}
-                    <motion.div variants={fadeInUp} className="mb-10">
+                    <motion.div variants={fadeInUp} className="mb-8 sm:mb-12">
                         <div className="badge inline-flex">
                             <Sparkles size={13} className="text-accent-indigo" />
                             <span>Building Fast, Intelligent Digital Experiences</span>
@@ -71,7 +73,8 @@ export default function Hero() {
                     {/* H1 */}
                     <motion.h1
                         variants={fadeInUp}
-                        className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.08] tracking-tight"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.15] sm:leading-[1.18] tracking-tight"
+                        style={{ wordSpacing: '0.04em' }}
                     >
                         We Build Fast Websites
                         <br className="hidden sm:block" />
@@ -81,7 +84,7 @@ export default function Hero() {
                     {/* Subtext */}
                     <motion.p
                         variants={fadeInUp}
-                        className="mt-8 text-lg lg:text-xl text-text-muted max-w-2xl mx-auto leading-[1.8] font-light"
+                        className="mt-6 sm:mt-10 text-base sm:text-lg lg:text-xl text-text-muted max-w-2xl mx-auto leading-[1.75] sm:leading-[1.85] font-light"
                     >
                         Modern websites, scalable SaaS platforms, and AI-powered automation
                         — engineered for startups and businesses that refuse to settle.
@@ -90,7 +93,7 @@ export default function Hero() {
                     {/* Hero visual — AI brain centered below text */}
                     <motion.div
                         variants={fadeInUp}
-                        className="mt-12 flex justify-center"
+                        className="mt-8 sm:mt-12 flex justify-center"
                     >
                         <div className="relative w-full max-w-[320px] sm:max-w-[380px]">
                             <div className="absolute inset-0 bg-accent-indigo/[0.08] blur-[80px] rounded-full scale-75" />
@@ -108,7 +111,7 @@ export default function Hero() {
                     {/* CTA */}
                     <motion.div
                         variants={fadeInUp}
-                        className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5"
+                        className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
                     >
                         <button onClick={() => scrollTo("#contact")} className="btn-primary w-full sm:w-auto">
                             <span>Get a Free Consultation</span>
@@ -123,10 +126,10 @@ export default function Hero() {
                     {/* Trust stats */}
                     <motion.div
                         variants={fadeInUp}
-                        className="mt-14 flex flex-wrap items-center justify-center gap-x-12 gap-y-4"
+                        className="mt-10 sm:mt-16 flex flex-wrap items-center justify-center gap-x-8 sm:gap-x-14 gap-y-4 sm:gap-y-5"
                     >
                         {["50+ Projects Delivered", "98% Client Satisfaction", "AI-First Approach"].map((text) => (
-                            <div key={text} className="flex items-center gap-3 text-[13px] text-text-dim">
+                            <div key={text} className="flex items-center gap-2.5 sm:gap-3.5 text-[12px] sm:text-[13.5px] text-text-dim tracking-wide">
                                 <div className="w-1.5 h-1.5 rounded-full bg-success shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
                                 <span>{text}</span>
                             </div>

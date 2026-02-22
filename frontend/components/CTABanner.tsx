@@ -18,7 +18,7 @@ export default function CTABanner() {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-80px" }}
                 >
-                    <div className="relative glass-card p-14 sm:p-20 lg:p-24 rounded-3xl text-center overflow-hidden">
+                    <div className="relative glass-card p-8 sm:p-14 lg:p-20 xl:p-24 rounded-2xl sm:rounded-3xl text-center overflow-hidden">
                         {/* Background depth */}
                         <div className="absolute inset-0 line-grid opacity-30" />
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[50%] h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
@@ -36,7 +36,8 @@ export default function CTABanner() {
                         <div className="relative z-10">
                             <motion.h2
                                 variants={fadeInUp}
-                                className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-text-primary mb-7 leading-[1.2]"
+                                className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold tracking-tight text-text-primary mb-5 sm:mb-8 leading-[1.25] sm:leading-[1.3]"
+                                style={{ wordSpacing: '0.03em' }}
                             >
                                 Ready to Build Your Next
                                 <br />
@@ -45,7 +46,7 @@ export default function CTABanner() {
 
                             <motion.p
                                 variants={fadeInUp}
-                                className="text-text-muted text-base lg:text-lg max-w-lg mx-auto mb-10 font-light leading-[1.8]"
+                                className="text-text-muted text-sm sm:text-base lg:text-lg max-w-lg mx-auto mb-8 sm:mb-12 font-light leading-[1.75] sm:leading-[1.85]"
                             >
                                 Let&apos;s talk about your project. No commitments, no hidden costs —
                                 just an honest conversation about what&apos;s possible.

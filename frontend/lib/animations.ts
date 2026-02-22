@@ -5,7 +5,7 @@ export const fadeInUp: Variants = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
     },
 };
 
@@ -14,7 +14,7 @@ export const fadeInDown: Variants = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
     },
 };
 
@@ -22,7 +22,7 @@ export const fadeIn: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
-        transition: { duration: 0.6, ease: "easeOut" },
+        transition: { duration: 0.4, ease: "easeOut" },
     },
 };
 
@@ -31,7 +31,7 @@ export const scaleIn: Variants = {
     visible: {
         opacity: 1,
         scale: 1,
-        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
     },
 };
 
@@ -40,7 +40,7 @@ export const slideInLeft: Variants = {
     visible: {
         opacity: 1,
         x: 0,
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
     },
 };
 
@@ -49,7 +49,7 @@ export const slideInRight: Variants = {
     visible: {
         opacity: 1,
         x: 0,
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
     },
 };
 
@@ -57,8 +57,8 @@ export const staggerContainer: Variants = {
     hidden: {},
     visible: {
         transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.1,
+            staggerChildren: 0.08,
+            delayChildren: 0.08,
         },
     },
 };
@@ -67,8 +67,8 @@ export const staggerContainerSlow: Variants = {
     hidden: {},
     visible: {
         transition: {
-            staggerChildren: 0.15,
-            delayChildren: 0.2,
+            staggerChildren: 0.12,
+            delayChildren: 0.15,
         },
     },
 };

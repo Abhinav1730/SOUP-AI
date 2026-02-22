@@ -34,26 +34,26 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 
 export default function StatsBar() {
     return (
-        <section className="relative py-10">
+        <section className="relative py-14">
             <div className="container-custom">
                 <motion.div
                     variants={fadeInUp}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-40px" }}
-                    className="glass-card py-14 sm:py-16 px-10 sm:px-14 rounded-2xl"
+                    className="glass-card py-10 sm:py-16 lg:py-20 px-6 sm:px-10 lg:px-14 rounded-2xl"
                 >
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 lg:gap-0">
                         {stats.map((stat, i) => (
                             <div
                                 key={i}
                                 className={`text-center ${i < stats.length - 1 ? "lg:border-r lg:border-white/[0.05]" : ""
                                     }`}
                             >
-                                <div className="text-3xl sm:text-4xl font-bold gradient-text-strong mb-3 tracking-tight">
+                                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text-strong mb-2 sm:mb-4 tracking-tight">
                                     <Counter target={stat.value} suffix={stat.suffix} />
                                 </div>
-                                <div className="text-[12px] uppercase tracking-[0.1em] text-text-dim font-medium">
+                                <div className="text-[11px] sm:text-[13px] uppercase tracking-[0.1em] sm:tracking-[0.12em] text-text-dim font-medium">
                                     {stat.label}
                                 </div>
                             </div>
