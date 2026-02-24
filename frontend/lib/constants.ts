@@ -59,11 +59,20 @@ export const WHY_US_POINTS = [
 
 export const PROJECTS = [
     {
+        title: "Nanté Patisserie & Confectionery",
+        description:
+            "A premium digital platform for a luxury chef cafe that drove significant growth in sales and profit. Users can easily discover new innovations and order custom designer cakes.",
+        tags: ["Next.js", "Framer Motion", "Tailwind CSS", "UI/UX"],
+        image: "/project-bakery.jpg",
+        link: "https://panaderia-celaya.vercel.app/",
+    },
+    {
         title: "AI Restaurant Ordering System",
         description:
             "A conversational AI platform that handles restaurant orders via voice and text, reducing wait times by 60% and increasing order accuracy.",
         tags: ["Next.js", "OpenAI", "Node.js", "PostgreSQL"],
         image: "/project-restaurant.jpg",
+        link: "#",
     },
     {
         title: "SaaS Analytics Dashboard",
@@ -71,6 +80,7 @@ export const PROJECTS = [
             "Real-time analytics platform with customizable dashboards, team collaboration, and automated reporting for data-driven businesses.",
         tags: ["React", "TypeScript", "D3.js", "Supabase"],
         image: "/project-analytics.jpg",
+        link: "#",
     },
     {
         title: "AI Customer Support Bot",
@@ -78,6 +88,7 @@ export const PROJECTS = [
             "Multi-channel support bot that resolves 80% of tickets autonomously, with smart escalation and sentiment analysis capabilities.",
         tags: ["Python", "LangChain", "React", "Redis"],
         image: "/project-support.jpg",
+        link: "#",
     },
     {
         title: "Voice-Based CRM Automation",
@@ -85,6 +96,7 @@ export const PROJECTS = [
             "Voice-enabled CRM system that logs calls, updates records, and triggers follow-ups automatically — saving sales teams 15+ hours weekly.",
         tags: ["Twilio", "GPT-4", "Salesforce", "Next.js"],
         image: "/project-crm.jpg",
+        link: "#",
     },
 ] as const;
 

@@ -128,7 +128,7 @@ export default function Hero() {
                         variants={fadeInUp}
                         className="mt-10 sm:mt-16 flex flex-wrap items-center justify-center gap-x-8 sm:gap-x-14 gap-y-4 sm:gap-y-5"
                     >
-                        {["50+ Projects Delivered", "98% Client Satisfaction", "AI-First Approach"].map((text) => (
+                        {["10+ Projects Delivered", "100% Client Satisfaction", "AI-First Approach"].map((text) => (
                             <div key={text} className="flex items-center gap-2.5 sm:gap-3.5 text-[12px] sm:text-[13.5px] text-text-dim tracking-wide">
                                 <div className="w-1.5 h-1.5 rounded-full bg-success shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
                                 <span>{text}</span>

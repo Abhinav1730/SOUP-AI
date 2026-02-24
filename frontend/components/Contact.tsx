@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Send, Loader2, CheckCircle2, Mail, MapPin, Clock } from "lucide-react";
+import { Send, Loader2, CheckCircle2, Mail, MapPin, Clock, Coins, ChevronDown } from "lucide-react";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer } from "@/lib/animations";
 import { contactFormSchema, type ContactFormData } from "@/lib/schema";
 import { BUDGET_OPTIONS } from "@/lib/constants";
@@ -13,6 +13,29 @@ import toast from "react-hot-toast";
 
 export default function Contact() {
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [currency, setCurrency] = useState({ symbol: "$", code: "USD" });
+
+    useEffect(() => {
+        const fetchLocationData = async () => {
+            try {
+                const res = await fetch("https://ipapi.co/json/");
+                const data = await res.json();
+                if (data.currency) {
+                    const symbol = new Intl.NumberFormat(undefined, {
+                        style: "currency",
+                        currency: data.currency,
+                    })
+                        .formatToParts(0)
+                        .find((p) => p.type === "currency")?.value || "$";
+
+                    setCurrency({ symbol, code: data.currency });
+                }
+            } catch (err) {
+                console.error("Failed to detect currency:", err);
+            }
+        };
+        fetchLocationData();
+    }, []);
 
     const {
         register,
@@ -26,10 +49,12 @@ export default function Contact() {
 
     const onSubmit = async (data: ContactFormData) => {
         try {
+            // Include currency info in the submission
+            const submissionData = { ...data, detected_currency: currency.code };
             const res = await fetch("/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
+                body: JSON.stringify(submissionData),
             });
             if (!res.ok) throw new Error();
             setIsSubmitted(true);
@@ -161,10 +186,36 @@ export default function Contact() {
                                         </div>
                                         <div>
                                             <label htmlFor="budget" className="block text-[12px] uppercase tracking-[0.06em] font-medium text-text-dim mb-3">Budget <span className="text-error">*</span></label>
-                                            <select id="budget" {...register("budget")} className={`${inputCls} appearance-none cursor-pointer`} defaultValue="">
-                                                <option value="" disabled className="bg-bg-secondary text-text-dim">Select budget</option>
-                                                {BUDGET_OPTIONS.map((o) => <option key={o} value={o} className="bg-bg-secondary text-text-primary">{o}</option>)}
-                                            </select>
+                                            <div className="relative group">
+                                                {/* Left Icon */}
+                                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-text-dim/60 group-hover:text-accent-indigo transition-colors duration-300 pointer-events-none">
+                                                    <Coins size={18} strokeWidth={1.5} />
+                                                </div>
+
+                                                <select
+                                                    id="budget"
+                                                    {...register("budget")}
+                                                    className={`${inputCls} pl-11 pr-24 appearance-none cursor-pointer hover:border-white/[0.12] focus:border-accent-indigo/30 transition-all`}
+                                                    defaultValue=""
+                                                >
+                                                    <option value="" disabled className="bg-bg-secondary text-text-dim">
+                                                        Select budget range
+                                                    </option>
+                                                    {BUDGET_OPTIONS.map((o) => (
+                                                        <option key={o} value={o} className="bg-bg-secondary text-text-primary">
+                                                            {o.replaceAll("$", currency.symbol)}
+                                                        </option>
+                                                    ))}
+                                                </select>
+
+                                                {/* Right: Currency Badge & Chevron */}
+                                                <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-3 pointer-events-none">
+                                                    <div className="hidden sm:flex items-center px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.06] text-[10px] font-bold text-accent-indigo/80 tracking-wider">
+                                                        {currency.code}
+                                                    </div>
+                                                    <ChevronDown size={14} className="text-text-dim group-hover:text-accent-indigo transition-colors duration-300" />
+                                                </div>
+                                            </div>
                                             {errors.budget && <p className="mt-1.5 text-[11px] text-error">{errors.budget.message}</p>}
                                         </div>
                                     </div>

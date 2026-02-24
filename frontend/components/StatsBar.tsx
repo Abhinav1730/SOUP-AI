@@ -5,9 +5,9 @@ import { useRef, useState, useEffect } from "react";
 import { fadeInUp } from "@/lib/animations";
 
 const stats = [
-    { value: 50, suffix: "+", label: "Projects Delivered" },
-    { value: 98, suffix: "%", label: "Client Satisfaction" },
-    { value: 30, suffix: "+", label: "AI Integrations" },
+    { value: 10, suffix: "+", label: "Projects Delivered" },
+    { value: 100, suffix: "%", label: "Client Satisfaction" },
+    { value: 10, suffix: "+", label: "AI Integrations" },
     { value: 4, suffix: "x", label: "Faster Time-to-Market" },
 ];
 

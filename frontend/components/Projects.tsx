@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, BarChart3, Bot, Mic, Utensils } from "lucide-react";
+import { ArrowUpRight, BarChart3, Bot, Cake, Mic, Utensils } from "lucide-react";
 import { fadeInUp, staggerContainerSlow } from "@/lib/animations";
 import { PROJECTS } from "@/lib/constants";
 import SectionHeading from "./SectionHeading";
 
 const projectIcons = [
+    <Cake key="c" size={36} strokeWidth={1} />,
     <Utensils key="u" size={36} strokeWidth={1} />,
     <BarChart3 key="b" size={36} strokeWidth={1} />,
     <Bot key="bo" size={36} strokeWidth={1} />,
@@ -42,10 +43,13 @@ export default function Projects() {
                     className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 mt-14 sm:mt-20"
                 >
                     {PROJECTS.map((project, i) => (
-                        <motion.div
+                        <motion.a
                             key={project.title}
+                            href={project.link}
+                            target={project.link.startsWith("http") ? "_blank" : undefined}
+                            rel={project.link.startsWith("http") ? "noopener noreferrer" : undefined}
                             variants={fadeInUp}
-                            className="group glass-card rounded-2xl overflow-hidden glass-card-interactive"
+                            className="group glass-card rounded-2xl overflow-hidden glass-card-interactive block cursor-pointer"
                         >
                             {/* Thumbnail area */}
                             <div className="relative h-44 sm:h-52 lg:h-56 overflow-hidden bg-bg-secondary">
@@ -88,11 +92,11 @@ export default function Projects() {
                                 {/* View Case Study */}
                                 <div className="mt-7 overflow-hidden h-0 group-hover:h-8 transition-all duration-500 ease-out">
                                     <span className="text-[13px] text-accent-indigo font-medium flex items-center gap-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                        View Case Study <ArrowUpRight size={12} />
+                                        View Project <ArrowUpRight size={12} />
                                     </span>
                                 </div>
                             </div>
-                        </motion.div>
+                        </motion.a>
                     ))}
                 </motion.div>
             </div>
