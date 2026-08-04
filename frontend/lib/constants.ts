@@ -7,10 +7,10 @@ export const NAV_LINKS = [
     { label: "About", href: "#about" },
     { label: "Work", href: "#projects" },
     { label: "Services", href: "#services" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Process", href: "#process" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Contact", href: "#contact" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Process", href: "/process" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Contact", href: "/contact" },
 ] as const;
 
 export const BUILD_SERVICES = [
@@ -139,30 +139,6 @@ export const TECH_MARQUEE = [
     "Framer Motion",
     "Vercel",
     "Supabase",
-] as const;
-
-export const COMPARISON_CARDS = [
-    {
-        type: "Old agency",
-        title: "Bolted on",
-        description: "Same old process, 'AI' added to the pitch deck. Weeks for a landing page. High fees for slow output.",
-        flaw: "No real AI workflow",
-        highlight: false,
-    },
-    {
-        type: "Most 'AI studios'",
-        title: "Tool hype",
-        description: "Run everything through ChatGPT. No process. No measurable outcome. Looks AI, operates like 2018.",
-        flaw: "Prompts, not systems",
-        highlight: false,
-    },
-    {
-        type: "SOUP AI",
-        title: "AI-native",
-        description: "AI built into every workflow from day one. Modern stacks, fast delivery, and production-ready code — not just mockups.",
-        flaw: "We ship what we sell",
-        highlight: true,
-    },
 ] as const;
 
 export const DIFFERENTIATORS = [
@@ -452,13 +428,6 @@ export const INDIA_ABOUT = {
             icon: "Monitor",
         },
     ],
-    maintenance: {
-        title: "75 days free maintenance",
-        freeNote:
-            "Website live होने के 75 days तक सारी maintenance हमारी होगी, free of cost.",
-        paidNote:
-            "इसके बाद, maintenance chargeable होगी, depending on what the problem is.",
-    },
     marketing: [
         {
             title: "Email Automation",

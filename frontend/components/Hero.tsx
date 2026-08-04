@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { navigateTo } from "@/lib/navigation";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { CAPABILITY_STACK, HERO_STATS } from "@/lib/constants";
+import { TYPO } from "@/lib/typography";
 
 const TERMINAL_LINES = [
     "> exploring 40 brand directions",
@@ -77,7 +79,7 @@ export default function Hero() {
                     >
                         <motion.h1
                             variants={fadeInUp}
-                            className="text-[2.25rem] sm:text-[3rem] lg:text-[3.5rem] xl:text-[4rem] font-bold leading-[1.06] tracking-[-0.03em] text-text-primary"
+                            className={`${TYPO.hero} max-w-5xl`}
                         >
                             We build websites that{" "}
                             <span className="text-accent">perform</span>,
@@ -91,7 +93,7 @@ export default function Hero() {
 
                         <motion.p
                             variants={fadeInUp}
-                            className="mt-6 text-[15px] sm:text-base lg:text-lg text-text-muted leading-relaxed max-w-2xl"
+                            className={`mt-6 ${TYPO.lead} max-w-2xl`}
                         >
                             From high-performance websites and SaaS platforms to AI chatbots
                             and automation — we help startups move at the speed of AI.{" "}
@@ -102,12 +104,12 @@ export default function Hero() {
                             variants={fadeInUp}
                             className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4"
                         >
-                            <button onClick={() => scrollTo("#contact")} className="btn-primary">
+                            <button onClick={() => navigateTo("/contact")} className="btn-primary">
                                 Start a project
                                 <ArrowRight size={14} />
                             </button>
                             <button
-                                onClick={() => scrollTo("#pricing")}
+                                onClick={() => navigateTo("/pricing")}
                                 className="btn-secondary btn-secondary-dot"
                             >
                                 See pricing
@@ -121,9 +123,9 @@ export default function Hero() {
                         >
                             {HERO_STATS.map((stat) => (
                                 <div key={stat.label}>
-                                    <div className="text-2xl sm:text-3xl xl:text-4xl font-bold text-text-primary tracking-tight">
+                                    <div className={TYPO.stat}>
                                         {stat.value}
-                                        <span className="text-text-muted text-xl xl:text-2xl font-medium">{stat.suffix}</span>
+                                        <span className={TYPO.statSuffix}>{stat.suffix}</span>
                                     </div>
                                     <div className="mono-label mt-2">{stat.label}</div>
                                 </div>

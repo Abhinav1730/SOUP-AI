@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { fadeInUp } from "@/lib/animations";
 import { TESTIMONIALS } from "@/lib/constants";
+import { TYPO } from "@/lib/typography";
 import SectionHeading from "./SectionHeading";
 
 export default function Testimonials() {
@@ -28,7 +29,7 @@ export default function Testimonials() {
                     viewport={{ once: true, margin: "-80px" }}
                     className="mt-12 lg:mt-16"
                 >
-                    <div className="glass-card p-8 sm:p-12 lg:p-16 min-h-[280px] flex flex-col justify-between">
+                    <div className="glass-card p-6 sm:p-12 lg:p-16 min-h-[240px] sm:min-h-[280px] flex flex-col justify-between">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={current}
@@ -37,18 +38,18 @@ export default function Testimonials() {
                                 exit={{ opacity: 0, x: -20 }}
                                 transition={{ duration: 0.25 }}
                             >
-                                <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-text-secondary leading-relaxed font-light">
+                                <p className={TYPO.quote}>
                                     &ldquo;{TESTIMONIALS[current].content}&rdquo;
                                 </p>
-                                <div className="flex items-center gap-4 mt-8">
-                                    <div className="w-10 h-10 rounded-md bg-white/[0.06] border border-white/[0.08] flex items-center justify-center text-[12px] font-semibold text-text-muted">
+                                <div className="flex items-center gap-4 mt-6 sm:mt-8">
+                                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-md bg-white/[0.06] border border-white/[0.08] flex items-center justify-center text-[11px] sm:text-[12px] font-semibold text-text-muted">
                                         {TESTIMONIALS[current].avatar}
                                     </div>
                                     <div>
-                                        <div className="text-[14px] font-medium text-text-primary">
+                                        <div className={`${TYPO.bodySm} font-medium text-text-primary`}>
                                             {TESTIMONIALS[current].name}
                                         </div>
-                                        <div className="text-[13px] text-text-dim">
+                                        <div className={`${TYPO.bodySm} text-text-dim`}>
                                             {TESTIMONIALS[current].role}
                                         </div>
                                     </div>

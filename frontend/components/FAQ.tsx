@@ -5,13 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { FAQ_ITEMS } from "@/lib/constants";
+import { navigateTo } from "@/lib/navigation";
 import SectionHeading from "./SectionHeading";
 
 export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
-        <section id="faq" className="section-padding section-alt relative">
+        <section id="faq" className="section-padding section-alt relative pt-28 lg:pt-32">
             <div className="container-custom">
                 <SectionHeading
                     label="FAQ"
@@ -72,7 +73,7 @@ export default function FAQ() {
                     className="mt-8"
                 >
                     <button
-                        onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+                        onClick={() => navigateTo("/contact")}
                         className="text-[13px] text-text-muted hover:text-text-primary transition-colors flex items-center gap-2"
                     >
                         Still have questions? Get in touch →

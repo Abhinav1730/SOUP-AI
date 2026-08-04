@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { navigateTo } from "@/lib/navigation";
 
 export default function StickyCTA() {
     const [visible, setVisible] = useState(false);
@@ -18,7 +19,7 @@ export default function StickyCTA() {
     return (
         <div className="fixed bottom-6 right-6 z-50 hidden sm:block">
             <button
-                onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => navigateTo("/contact")}
                 className="btn-primary shadow-lg shadow-black/40 text-[13px] py-3 px-6"
             >
                 Start a project

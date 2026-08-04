@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { fadeInUp } from "@/lib/animations";
+import { navigateTo } from "@/lib/navigation";
+import { TYPO } from "@/lib/typography";
 
 export default function FinalCTA() {
     const scrollTo = (href: string) => {
@@ -21,19 +23,19 @@ export default function FinalCTA() {
                 >
                     <div>
                         <p className="mono-label mb-4">Join 10+ companies</p>
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-semibold tracking-[-0.03em] text-text-primary leading-[1.12]">
+                        <h2 className={TYPO.section}>
                             They shipped.
                             <br />
                             Your turn.
                         </h2>
                     </div>
                     <div>
-                        <p className="text-[15px] sm:text-base text-text-muted leading-relaxed">
+                        <p className={TYPO.lead}>
                             NexaFlow saw 3× retention. BrightPath automated 2,000+ daily inquiries.
                             What&apos;s your goal?
                         </p>
                         <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                            <button onClick={() => scrollTo("#contact")} className="btn-primary">
+                            <button onClick={() => navigateTo("/contact")} className="btn-primary">
                                 Start your project
                                 <ArrowRight size={15} />
                             </button>

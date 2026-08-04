@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { fadeInUp } from "@/lib/animations";
+import { navigateTo } from "@/lib/navigation";
+import { TYPO } from "@/lib/typography";
 
 export default function CTABanner() {
     const scrollTo = (href: string) => {
@@ -21,18 +23,18 @@ export default function CTABanner() {
                 >
                     <div>
                         <p className="mono-label mb-4">Let&apos;s go</p>
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-[-0.03em] text-text-primary leading-[1.12]">
+                        <h2 className={TYPO.section}>
                             Ready to move
                             <br />
                             at AI speed?
                         </h2>
-                        <p className="mt-4 text-[14px] sm:text-[15px] text-text-muted leading-relaxed">
+                        <p className={`mt-4 ${TYPO.bodySm} max-w-xl`}>
                             Start with a free 30-minute call. No pitch deck. No commitment.
                             Just clarity on what we can build for you.
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
-                        <button onClick={() => scrollTo("#contact")} className="btn-primary">
+                        <button onClick={() => navigateTo("/contact")} className="btn-primary">
                             Book a discovery call
                             <ArrowRight size={15} />
                         </button>

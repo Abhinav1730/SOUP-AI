@@ -11,7 +11,7 @@ import { BUDGET_OPTIONS } from "@/lib/constants";
 import SectionHeading from "./SectionHeading";
 import toast from "react-hot-toast";
 
-export default function Contact() {
+export default function Contact({ embedded = false }: { embedded?: boolean }) {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [currency, setCurrency] = useState({ symbol: "$", code: "USD" });
 
@@ -69,7 +69,10 @@ export default function Contact() {
         "w-full px-4 py-3 rounded-lg bg-bg-secondary border border-white/[0.08] text-text-primary placeholder:text-text-dim text-[14px] focus:outline-none input-glow transition-all duration-200";
 
     return (
-        <section id="contact" className="section-padding relative">
+        <section
+            id="contact"
+            className={`section-padding relative ${embedded ? "" : "pt-28 lg:pt-32"}`}
+        >
             <div className="container-custom">
                 <SectionHeading
                     label="Contact"

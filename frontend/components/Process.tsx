@@ -7,7 +7,7 @@ import SectionHeading from "./SectionHeading";
 
 export default function Process() {
     return (
-        <section id="process" className="section-padding section-alt relative">
+        <section id="process" className="section-padding section-alt relative pt-28 lg:pt-32">
             <div className="container-custom">
                 <SectionHeading
                     label="How we work"

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { PRICING_PACKAGES } from "@/lib/constants";
+import { TYPO } from "@/lib/typography";
 import SectionHeading from "./SectionHeading";
 
 export default function Pricing() {
@@ -12,7 +13,7 @@ export default function Pricing() {
     };
 
     return (
-        <section id="pricing" className="section-padding relative">
+        <section id="pricing" className="section-padding relative pt-28 lg:pt-32">
             <div className="container-custom">
                 <SectionHeading
                     label="Pricing"
@@ -38,21 +39,21 @@ export default function Pricing() {
                             {pkg.featured && (
                                 <span className="mono-label text-accent mb-3 normal-case">Best value</span>
                             )}
-                            <h3 className="text-lg font-semibold text-text-primary">{pkg.name}</h3>
+                            <h3 className={TYPO.card}>{pkg.name}</h3>
                             {pkg.save && (
-                                <p className="text-[12px] text-accent mt-1">Save {pkg.save}</p>
+                                <p className="text-[11px] sm:text-[12px] text-accent mt-1">Save {pkg.save}</p>
                             )}
                             <div className="mt-4 mb-2">
-                                <span className="text-3xl font-semibold text-text-primary">{pkg.price}</span>
+                                <span className={TYPO.stat}>{pkg.price}</span>
                                 {pkg.price !== "Custom" && (
-                                    <span className="text-[12px] text-text-dim ml-1">USD</span>
+                                    <span className="text-[11px] sm:text-[12px] text-text-dim ml-1">USD</span>
                                 )}
                             </div>
-                            <p className="text-[13px] text-text-muted mb-6">{pkg.tagline}</p>
+                            <p className={`${TYPO.bodySm} mb-6`}>{pkg.tagline}</p>
 
                             <ul className="space-y-3 flex-1 mb-6">
                                 {pkg.features.map((feature) => (
-                                    <li key={feature} className="flex items-start gap-2.5 text-[13px] text-text-secondary">
+                                    <li key={feature} className={`flex items-start gap-2.5 ${TYPO.bodySm} text-text-secondary`}>
                                         <Check size={14} className="text-accent shrink-0 mt-0.5" />
                                         {feature}
                                     </li>

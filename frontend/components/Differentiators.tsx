@@ -27,10 +27,10 @@ export default function Differentiators() {
                             variants={fadeInUp}
                             className="glass-card p-6 sm:p-7"
                         >
-                            <h3 className="text-[15px] font-semibold text-text-primary mb-2">
+                            <h3 className="heading-card mb-2">
                                 {item.title}
                             </h3>
-                            <p className="text-[13px] text-text-muted leading-relaxed">
+                            <p className="text-body-sm">
                                 {item.description}
                             </p>
                         </motion.div>

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { NAV_LINKS, BUILD_SERVICES, OPERATE_SERVICES } from "@/lib/constants";
+import { navigateTo } from "@/lib/navigation";
 import Logo from "./Logo";
 
 export default function Navbar() {
@@ -33,10 +35,10 @@ export default function Navbar() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    const scrollTo = (href: string) => {
+    const handleNav = (href: string) => {
         setIsMobileMenuOpen(false);
         setIsServicesOpen(false);
-        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+        navigateTo(href);
     };
 
     return (
@@ -53,17 +55,10 @@ export default function Navbar() {
             >
                 <div className="container-custom">
                     <nav className="flex items-center justify-between h-16 lg:h-[72px]">
-                        <a
-                            href="#"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                window.scrollTo({ top: 0, behavior: "smooth" });
-                            }}
-                            className="flex items-center gap-2.5 group"
-                        >
+                        <Link href="/" className="flex items-center gap-2.5 group">
                             <Logo variant="icon" priority className="sm:hidden" />
                             <Logo variant="full" priority className="hidden sm:block h-9" />
-                        </a>
+                        </Link>
 
                         <div className="hidden lg:flex items-center gap-8">
                             <div className="relative" ref={servicesRef}>
@@ -93,7 +88,7 @@ export default function Navbar() {
                                                     {BUILD_SERVICES.map((s) => (
                                                         <button
                                                             key={s.title}
-                                                            onClick={() => scrollTo("#services")}
+                                                            onClick={() => handleNav("#services")}
                                                             className="block w-full text-left py-2 text-[13px] text-text-muted hover:text-text-primary transition-colors"
                                                         >
                                                             {s.title}
@@ -105,7 +100,7 @@ export default function Navbar() {
                                                     {OPERATE_SERVICES.map((s) => (
                                                         <button
                                                             key={s.title}
-                                                            onClick={() => scrollTo("#services")}
+                                                            onClick={() => handleNav("#services")}
                                                             className="block w-full text-left py-2 text-[13px] text-text-muted hover:text-text-primary transition-colors"
                                                         >
                                                             {s.title}
@@ -121,7 +116,7 @@ export default function Navbar() {
                             {NAV_LINKS.filter((l) => l.label !== "Services").map((link) => (
                                 <button
                                     key={link.href}
-                                    onClick={() => scrollTo(link.href)}
+                                    onClick={() => handleNav(link.href)}
                                     className="text-[13px] font-medium text-text-muted hover:text-text-primary transition-colors"
                                 >
                                     {link.label}
@@ -130,7 +125,7 @@ export default function Navbar() {
                         </div>
 
                         <div className="hidden lg:block">
-                            <button onClick={() => scrollTo("#contact")} className="btn-primary text-[13px] py-2.5 px-5">
+                            <button onClick={() => handleNav("/contact")} className="btn-primary text-[13px] py-2.5 px-5">
                                 Start a project
                             </button>
                         </div>
@@ -162,7 +157,7 @@ export default function Navbar() {
                             {[...BUILD_SERVICES, ...OPERATE_SERVICES].map((s) => (
                                 <button
                                     key={s.title}
-                                    onClick={() => scrollTo("#services")}
+                                    onClick={() => handleNav("#services")}
                                     className="text-left px-2 py-3 text-[15px] text-text-muted hover:text-text-primary transition-colors"
                                 >
                                     {s.title}
@@ -172,13 +167,13 @@ export default function Navbar() {
                             {NAV_LINKS.filter((l) => l.label !== "Services").map((link) => (
                                 <button
                                     key={link.href}
-                                    onClick={() => scrollTo(link.href)}
+                                    onClick={() => handleNav(link.href)}
                                     className="text-left px-2 py-3 text-[15px] text-text-muted hover:text-text-primary transition-colors"
                                 >
                                     {link.label}
                                 </button>
                             ))}
-                            <button onClick={() => scrollTo("#contact")} className="btn-primary mt-6 w-full">
+                            <button onClick={() => handleNav("/contact")} className="btn-primary mt-6 w-full">
                                 Start a project
                             </button>
                         </div>

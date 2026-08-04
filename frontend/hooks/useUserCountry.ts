@@ -28,11 +28,29 @@ async function fetchCountryCode(): Promise<string> {
     return fetchPromise;
 }
 
+function getCountryOverride(): string | null {
+    if (typeof window === "undefined") return null;
+    const override = new URLSearchParams(window.location.search).get("country");
+    return override ? override.toUpperCase() : null;
+}
+
 export function useUserCountry(): GeoState {
-    const [countryCode, setCountryCode] = useState<string | null>(cachedCountryCode);
-    const [isLoading, setIsLoading] = useState(cachedCountryCode === null);
+    const override = getCountryOverride();
+    const [countryCode, setCountryCode] = useState<string | null>(
+        override ?? cachedCountryCode
+    );
+    const [isLoading, setIsLoading] = useState(
+        override ? false : cachedCountryCode === null
+    );
 
     useEffect(() => {
+        const paramOverride = getCountryOverride();
+        if (paramOverride) {
+            setCountryCode(paramOverride);
+            setIsLoading(false);
+            return;
+        }
+
         if (cachedCountryCode) return;
 
         let active = true;

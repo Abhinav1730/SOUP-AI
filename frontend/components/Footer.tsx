@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Github, Twitter, Linkedin, Instagram, ArrowUp } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { NAV_LINKS, SOCIAL_LINKS, BUILD_SERVICES, OPERATE_SERVICES } from "@/lib/constants";
+import { navigateTo } from "@/lib/navigation";
 import Logo from "./Logo";
 
 const socialIcons: Record<string, React.ReactNode> = {
@@ -15,7 +16,7 @@ const socialIcons: Record<string, React.ReactNode> = {
 
 export default function Footer() {
     const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-    const scrollTo = (href: string) => document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    const handleNav = (href: string) => navigateTo(href);
 
     return (
         <footer className="border-t border-white/[0.06] bg-bg-secondary">
@@ -53,7 +54,7 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {NAV_LINKS.map((link) => (
                                 <li key={link.href}>
-                                    <button onClick={() => scrollTo(link.href)} className="text-[13px] text-text-muted hover:text-text-primary transition-colors">
+                                    <button onClick={() => handleNav(link.href)} className="text-[13px] text-text-muted hover:text-text-primary transition-colors">
                                         {link.label}
                                     </button>
                                 </li>
@@ -66,7 +67,7 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {[...BUILD_SERVICES, ...OPERATE_SERVICES].map((s) => (
                                 <li key={s.title}>
-                                    <button onClick={() => scrollTo("#services")} className="text-[13px] text-text-muted hover:text-text-primary transition-colors">
+                                    <button onClick={() => handleNav("#services")} className="text-[13px] text-text-muted hover:text-text-primary transition-colors">
                                         {s.title}
                                     </button>
                                 </li>
@@ -85,7 +86,7 @@ export default function Footer() {
                             <li>Remote — Working globally</li>
                             <li>Mon–Sat, 9AM–7PM IST</li>
                         </ul>
-                        <button onClick={() => scrollTo("#contact")} className="btn-primary mt-5 text-[13px] py-2.5 px-5">
+                        <button onClick={() => handleNav("/contact")} className="btn-primary mt-5 text-[13px] py-2.5 px-5">
                             Start a project
                         </button>
                     </motion.div>
