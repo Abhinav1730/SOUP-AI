@@ -468,6 +468,32 @@
     perspective-origin: 50% 38%;
   }
 
+  .carousel-scene-flat {
+    height: auto;
+    min-height: 0;
+    perspective: none;
+    -webkit-perspective: none;
+    overflow: hidden;
+  }
+
+  .carousel-flat-stage {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0 8px;
+  }
+
+  .carousel-flat-card {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .projects-carousel-flat .carousel-flat-stage {
+    padding: 4px 12px 8px;
+  }
+
   .carousel-3d-root {
     position: relative;
     width: 100%;
@@ -538,11 +564,15 @@
       perspective-origin: 50% 46%;
     }
 
-    .projects-carousel-scene {
+    .projects-carousel-scene:not(.carousel-scene-flat) {
       height: clamp(380px, 108vw, 440px);
       perspective: 1000px;
       -webkit-perspective: 1000px;
       perspective-origin: 50% 42%;
+    }
+
+    .projects-carousel-scene.carousel-scene-flat {
+      height: auto;
     }
 
     .manifesto-bar {

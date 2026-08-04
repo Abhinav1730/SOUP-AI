@@ -26,10 +26,10 @@ function ProjectCard({
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`group glass-card glass-card-interactive overflow-hidden block w-[min(72vw,280px)] sm:w-[360px] lg:w-[400px] transition-all duration-500 ${
+            className={`group glass-card glass-card-interactive overflow-hidden block w-full max-w-[min(72vw,280px)] sm:w-[360px] lg:w-[400px] transition-all duration-500 ${
                 isActive
                     ? "border-accent/25 shadow-[0_0_48px_rgba(200,245,90,0.14)] opacity-100 scale-100"
-                    : "opacity-45 scale-[0.86] sm:blur-[0.5px] pointer-events-none"
+                    : "max-sm:invisible max-sm:opacity-0 sm:opacity-45 sm:scale-[0.86] sm:blur-[0.5px] pointer-events-none"
             }`}
             tabIndex={isActive ? 0 : -1}
             aria-hidden={!isActive}
@@ -85,6 +85,8 @@ export default function Projects() {
                     items={PROJECTS}
                     holdMs={PROJECTS_HOLD_MS}
                     sceneClassName="projects-carousel-scene"
+                    flatOnMobile
+                    flatSceneClassName="projects-carousel-flat"
                     radiusBreakpoints={PROJECT_RADIUS}
                     getKey={(project) => project.title}
                     getLabel={(project) => project.title}

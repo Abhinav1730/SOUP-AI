@@ -27,11 +27,31 @@ function useCarouselRadius(breakpoints = DEFAULT_RADIUS) {
     return radius;
 }
 
+function useIsMobile(breakpoint = 640) {
+    const [isMobile, setIsMobile] = useState(() => {
+        if (typeof window === "undefined") return false;
+        return window.matchMedia(`(max-width: ${breakpoint - 1}px)`).matches;
+    });
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+        const update = () => setIsMobile(mediaQuery.matches);
+
+        update();
+        mediaQuery.addEventListener("change", update);
+        return () => mediaQuery.removeEventListener("change", update);
+    }, [breakpoint]);
+
+    return isMobile;
+}
+
 export type Carousel3DProps<T> = {
     items: readonly T[];
     holdMs: number;
     rotateMs?: number;
     sceneClassName?: string;
+    flatOnMobile?: boolean;
+    flatSceneClassName?: string;
     radiusBreakpoints?: { sm: number; md: number; lg: number };
     getKey: (item: T) => string;
     getLabel: (item: T) => string;
@@ -43,6 +63,8 @@ export default function Carousel3D<T>({
     holdMs,
     rotateMs = DEFAULT_ROTATE_MS,
     sceneClassName = "",
+    flatOnMobile = false,
+    flatSceneClassName = "",
     radiusBreakpoints = DEFAULT_RADIUS,
     getKey,
     getLabel,
@@ -51,6 +73,7 @@ export default function Carousel3D<T>({
     const [activeIndex, setActiveIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const prefersReducedMotion = useReducedMotion();
+    const isMobile = useIsMobile();
     const radius = useCarouselRadius(radiusBreakpoints);
     const touchStart = useRef<{ x: number; y: number } | null>(null);
     const resumeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -122,6 +145,8 @@ export default function Carousel3D<T>({
 
     if (count === 0) return null;
 
+    const useFlatCarousel = prefersReducedMotion || (flatOnMobile && isMobile);
+
     const ring = (
         <motion.div
             className="services-carousel-ring"
@@ -175,14 +200,16 @@ export default function Carousel3D<T>({
                 </div>
 
                 <div
-                    className={`services-carousel-scene ${sceneClassName}`}
+                    className={`services-carousel-scene ${sceneClassName} ${
+                        useFlatCarousel ? `carousel-scene-flat ${flatSceneClassName}` : ""
+                    }`}
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                     onTouchStart={handleTouchStart}
                     onTouchEnd={handleTouchEnd}
                 >
-                    {prefersReducedMotion ? (
-                        <div className="flex justify-center px-2 sm:px-4 min-h-[240px] items-center">
+                    {useFlatCarousel ? (
+                        <div className="carousel-flat-stage">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={activeIndex}
@@ -190,6 +217,7 @@ export default function Carousel3D<T>({
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -14 }}
                                     transition={{ duration: 0.35 }}
+                                    className="carousel-flat-card"
                                 >
                                     {renderCard(items[activeIndex], activeIndex, true)}
                                 </motion.div>
@@ -199,10 +227,12 @@ export default function Carousel3D<T>({
                         ring
                     )}
 
-                    <div
-                        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 sm:h-24 bg-gradient-to-t from-bg-primary via-bg-primary/60 to-transparent"
-                        aria-hidden
-                    />
+                    {!useFlatCarousel && (
+                        <div
+                            className="pointer-events-none absolute inset-x-0 bottom-0 h-20 sm:h-24 bg-gradient-to-t from-bg-primary via-bg-primary/60 to-transparent"
+                            aria-hidden
+                        />
+                    )}
                 </div>
             </div>
 
