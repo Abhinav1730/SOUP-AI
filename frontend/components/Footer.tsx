@@ -1,15 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Twitter, Linkedin, Instagram, ArrowUp, Heart } from "lucide-react";
+import { Github, Twitter, Linkedin, Instagram, ArrowUp } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
-import { NAV_LINKS, SOCIAL_LINKS } from "@/lib/constants";
+import { NAV_LINKS, SOCIAL_LINKS, BUILD_SERVICES, OPERATE_SERVICES } from "@/lib/constants";
+import Logo from "./Logo";
 
 const socialIcons: Record<string, React.ReactNode> = {
-    twitter: <Twitter size={15} />,
-    linkedin: <Linkedin size={15} />,
-    github: <Github size={15} />,
-    instagram: <Instagram size={15} />,
+    twitter: <Twitter size={14} />,
+    linkedin: <Linkedin size={14} />,
+    github: <Github size={14} />,
+    instagram: <Instagram size={14} />,
 };
 
 export default function Footer() {
@@ -17,35 +18,28 @@ export default function Footer() {
     const scrollTo = (href: string) => document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
 
     return (
-        <footer className="relative border-t border-white/[0.04] bg-bg-secondary/40">
-            <div className="container-custom py-24">
+        <footer className="border-t border-white/[0.06] bg-bg-secondary">
+            <div className="container-custom py-16 lg:py-20">
                 <motion.div
                     variants={staggerContainer}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 md:grid-cols-12 gap-16"
+                    className="grid grid-cols-1 md:grid-cols-12 gap-12"
                 >
-                    {/* Brand */}
-                    <motion.div variants={fadeInUp} className="md:col-span-5">
-                        <div className="flex items-center gap-2.5 mb-5">
-                            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-accent-indigo to-accent-cyan flex items-center justify-center font-bold text-[12px] text-white">S</div>
-                            <span className="text-[15px] font-semibold tracking-tight text-text-primary">
-                                SOUP <span className="gradient-text">AI</span>
-                            </span>
-                        </div>
-                        <p className="text-[13px] text-text-muted leading-[1.85] max-w-sm mb-7 font-light">
-                            Building fast, intelligent digital experiences for startups and
-                            businesses worldwide. Bold ideas into polished products.
+                    <motion.div variants={fadeInUp} className="md:col-span-4">
+                        <Logo variant="full" className="h-14" />
+                        <p className="text-[13px] text-text-muted leading-relaxed max-w-xs mt-4 mb-6">
+                            AI-native studio building fast websites, scalable SaaS, and intelligent automation for startups worldwide.
                         </p>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2">
                             {Object.entries(SOCIAL_LINKS).map(([key, url]) => (
                                 <a
                                     key={key}
                                     href={url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-text-dim hover:text-text-primary hover:border-white/[0.12] hover:bg-white/[0.05] transition-all duration-300"
+                                    className="w-8 h-8 rounded-md border border-white/[0.08] flex items-center justify-center text-text-dim hover:text-text-primary hover:border-white/[0.15] transition-colors"
                                     aria-label={key}
                                 >
                                     {socialIcons[key]}
@@ -54,13 +48,12 @@ export default function Footer() {
                         </div>
                     </motion.div>
 
-                    {/* Links */}
-                    <motion.div variants={fadeInUp} className="md:col-span-3">
-                        <h4 className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.15em] mb-5">Navigation</h4>
-                        <ul className="space-y-4">
+                    <motion.div variants={fadeInUp} className="md:col-span-2">
+                        <h4 className="mono-label mb-4">Navigation</h4>
+                        <ul className="space-y-3">
                             {NAV_LINKS.map((link) => (
                                 <li key={link.href}>
-                                    <button onClick={() => scrollTo(link.href)} className="text-[13px] text-text-muted hover:text-text-primary transition-colors duration-300 font-light">
+                                    <button onClick={() => scrollTo(link.href)} className="text-[13px] text-text-muted hover:text-text-primary transition-colors">
                                         {link.label}
                                     </button>
                                 </li>
@@ -68,32 +61,46 @@ export default function Footer() {
                         </ul>
                     </motion.div>
 
-                    {/* Contact */}
-                    <motion.div variants={fadeInUp} className="md:col-span-4">
-                        <h4 className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.15em] mb-5">Get in Touch</h4>
-                        <ul className="space-y-4 text-[13px] text-text-muted font-light">
-                            <li><a href="mailto:tech.soup.ai@gmail.com" className="hover:text-text-primary transition-colors">tech.soup.ai@gmail.com</a></li>
-                            <li>Remote — Working Globally</li>
+                    <motion.div variants={fadeInUp} className="md:col-span-3">
+                        <h4 className="mono-label mb-4">Services</h4>
+                        <ul className="space-y-3">
+                            {[...BUILD_SERVICES, ...OPERATE_SERVICES].map((s) => (
+                                <li key={s.title}>
+                                    <button onClick={() => scrollTo("#services")} className="text-[13px] text-text-muted hover:text-text-primary transition-colors">
+                                        {s.title}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </motion.div>
+
+                    <motion.div variants={fadeInUp} className="md:col-span-3">
+                        <h4 className="mono-label mb-4">Contact</h4>
+                        <ul className="space-y-3 text-[13px] text-text-muted">
+                            <li>
+                                <a href="mailto:tech.soup.ai@gmail.com" className="hover:text-text-primary transition-colors">
+                                    tech.soup.ai@gmail.com
+                                </a>
+                            </li>
+                            <li>Remote — Working globally</li>
                             <li>Mon–Sat, 9AM–7PM IST</li>
                         </ul>
-                        <button onClick={() => scrollTo("#contact")} className="mt-5 btn-secondary text-[12px] py-2 px-5 rounded-lg">
-                            Start a Project
+                        <button onClick={() => scrollTo("#contact")} className="btn-primary mt-5 text-[13px] py-2.5 px-5">
+                            Start a project
                         </button>
                     </motion.div>
                 </motion.div>
 
-                {/* Bottom */}
-                <div className="mt-20 pt-10 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="text-[11px] text-text-dim flex items-center gap-1.5">
-                        &copy; {new Date().getFullYear()} SOUP AI. Crafted with
-                        <Heart size={10} className="text-accent-pink fill-accent-pink" /> for ambitious teams.
+                <div className="mt-16 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p className="text-[12px] text-text-dim">
+                        &copy; {new Date().getFullYear()} SOUP AI. All rights reserved.
                     </p>
                     <button
                         onClick={scrollToTop}
-                        className="w-8 h-8 rounded-lg border border-white/[0.06] flex items-center justify-center text-text-dim hover:text-text-primary hover:border-white/[0.12] transition-all duration-300 group"
+                        className="w-8 h-8 rounded-md border border-white/[0.08] flex items-center justify-center text-text-dim hover:text-text-primary hover:border-white/[0.15] transition-colors"
                         aria-label="Scroll to top"
                     >
-                        <ArrowUp size={13} className="group-hover:-translate-y-0.5 transition-transform duration-300" />
+                        <ArrowUp size={14} />
                     </button>
                 </div>
             </div>

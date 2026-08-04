@@ -1,29 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { NAV_LINKS } from "@/lib/constants";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { NAV_LINKS, BUILD_SERVICES, OPERATE_SERVICES } from "@/lib/constants";
+import Logo from "./Logo";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isServicesOpen, setIsServicesOpen] = useState(false);
+    const servicesRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        let scrollTimeout: NodeJS.Timeout;
-        
-        const handleScroll = () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                setIsScrolled(window.scrollY > 20);
-            }, 100); // Debounce scroll events
-        };
-        
+        const handleScroll = () => setIsScrolled(window.scrollY > 20);
         window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-            clearTimeout(scrollTimeout);
-        };
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     useEffect(() => {
@@ -31,25 +23,36 @@ export default function Navbar() {
         return () => { document.body.style.overflow = ""; };
     }, [isMobileMenuOpen]);
 
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) {
+                setIsServicesOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
     const scrollTo = (href: string) => {
         setIsMobileMenuOpen(false);
+        setIsServicesOpen(false);
         document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
     };
 
     return (
         <>
             <motion.header
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                        ? "bg-[rgba(6,8,15,0.6)] backdrop-blur-2xl border-b border-white/[0.05] shadow-[0_1px_40px_rgba(0,0,0,0.4)]"
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+                    isScrolled
+                        ? "bg-bg-primary/90 backdrop-blur-xl border-b border-white/[0.06]"
                         : "bg-transparent"
-                    }`}
+                }`}
             >
                 <div className="container-custom">
-                    <nav className="flex items-center justify-between h-20">
-                        {/* Logo */}
+                    <nav className="flex items-center justify-between h-16 lg:h-[72px]">
                         <a
                             href="#"
                             onClick={(e) => {
@@ -58,95 +61,126 @@ export default function Navbar() {
                             }}
                             className="flex items-center gap-2.5 group"
                         >
-                            <div className="relative w-8 h-8 rounded-lg bg-gradient-to-br from-accent-indigo to-accent-cyan flex items-center justify-center font-bold text-[13px] text-white overflow-hidden">
-                                S
-                            </div>
-                            <span className="text-[16px] font-semibold tracking-tight text-text-primary">
-                                SOUP <span className="gradient-text">AI</span>
-                            </span>
+                            <Logo variant="icon" priority className="sm:hidden" />
+                            <Logo variant="full" priority className="hidden sm:block h-9" />
                         </a>
 
-                        {/* Desktop Nav — uppercase tracking-wide, gap-10 */}
-                        <div className="hidden lg:flex items-center gap-10">
-                            {NAV_LINKS.map((link) => (
+                        <div className="hidden lg:flex items-center gap-8">
+                            <div className="relative" ref={servicesRef}>
+                                <button
+                                    onClick={() => setIsServicesOpen(!isServicesOpen)}
+                                    className="flex items-center gap-1 text-[13px] font-medium text-text-muted hover:text-text-primary transition-colors"
+                                >
+                                    Services
+                                    <ChevronDown
+                                        size={14}
+                                        className={`transition-transform duration-200 ${isServicesOpen ? "rotate-180" : ""}`}
+                                    />
+                                </button>
+
+                                <AnimatePresence>
+                                    {isServicesOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 8 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 8 }}
+                                            transition={{ duration: 0.15 }}
+                                            className="absolute top-full left-0 mt-3 w-[420px] system-panel p-1 shadow-2xl"
+                                        >
+                                            <div className="grid grid-cols-2 gap-1">
+                                                <div className="p-4">
+                                                    <p className="mono-label mb-3">Build</p>
+                                                    {BUILD_SERVICES.map((s) => (
+                                                        <button
+                                                            key={s.title}
+                                                            onClick={() => scrollTo("#services")}
+                                                            className="block w-full text-left py-2 text-[13px] text-text-muted hover:text-text-primary transition-colors"
+                                                        >
+                                                            {s.title}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                                <div className="p-4 border-l border-white/[0.06]">
+                                                    <p className="mono-label mb-3">Operate</p>
+                                                    {OPERATE_SERVICES.map((s) => (
+                                                        <button
+                                                            key={s.title}
+                                                            onClick={() => scrollTo("#services")}
+                                                            className="block w-full text-left py-2 text-[13px] text-text-muted hover:text-text-primary transition-colors"
+                                                        >
+                                                            {s.title}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+
+                            {NAV_LINKS.filter((l) => l.label !== "Services").map((link) => (
                                 <button
                                     key={link.href}
                                     onClick={() => scrollTo(link.href)}
-                                    className="text-[12px] uppercase tracking-[0.08em] font-medium text-text-muted hover:text-text-primary transition-colors duration-300 relative group py-1"
+                                    className="text-[13px] font-medium text-text-muted hover:text-text-primary transition-colors"
                                 >
                                     {link.label}
-                                    {/* Animated underline */}
-                                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-accent-indigo/60 to-accent-cyan/40 group-hover:w-full transition-all duration-300 ease-out" />
                                 </button>
                             ))}
                         </div>
 
-                        {/* CTA — more padding, glow on hover */}
                         <div className="hidden lg:block">
-                            <button
-                                onClick={() => scrollTo("#contact")}
-                                className="px-6 py-2.5 text-[12px] uppercase tracking-[0.06em] font-semibold rounded-xl bg-gradient-to-r from-accent-indigo to-accent-cyan text-white border border-white/10 hover:shadow-[0_0_30px_rgba(99,102,241,0.2)] hover:border-white/20 transition-all duration-300 hover:-translate-y-[1px]"
-                            >
-                                Start a Project
+                            <button onClick={() => scrollTo("#contact")} className="btn-primary text-[13px] py-2.5 px-5">
+                                Start a project
                             </button>
                         </div>
 
-                        {/* Mobile Toggle */}
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="lg:hidden w-10 h-10 flex items-center justify-center text-text-primary rounded-lg hover:bg-white/[0.04] transition-colors"
+                            className="lg:hidden w-9 h-9 flex items-center justify-center text-text-primary"
                             aria-label="Toggle menu"
                         >
-                            <AnimatePresence mode="wait">
-                                {isMobileMenuOpen ? (
-                                    <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                                        <X size={22} />
-                                    </motion.div>
-                                ) : (
-                                    <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                                        <Menu size={22} />
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
+                            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
                         </button>
                     </nav>
                 </div>
             </motion.header>
 
-            {/* Mobile Menu */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.25 }}
-                        className="fixed inset-0 z-40 bg-bg-primary/[0.98] backdrop-blur-3xl lg:hidden"
+                        className="fixed inset-0 z-40 bg-bg-primary lg:hidden pt-16"
                     >
-                        <div className="flex flex-col items-center justify-center h-full gap-8">
-                            {NAV_LINKS.map((link, i) => (
-                                <motion.button
+                        <div className="container-custom py-8 flex flex-col gap-1">
+                            <div className="px-2 mb-6">
+                                <Logo variant="full" className="h-12" />
+                            </div>
+                            <p className="mono-label mb-2 px-2">Services</p>
+                            {[...BUILD_SERVICES, ...OPERATE_SERVICES].map((s) => (
+                                <button
+                                    key={s.title}
+                                    onClick={() => scrollTo("#services")}
+                                    className="text-left px-2 py-3 text-[15px] text-text-muted hover:text-text-primary transition-colors"
+                                >
+                                    {s.title}
+                                </button>
+                            ))}
+                            <div className="h-px bg-white/[0.06] my-4" />
+                            {NAV_LINKS.filter((l) => l.label !== "Services").map((link) => (
+                                <button
                                     key={link.href}
-                                    initial={{ opacity: 0, y: 16 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -8 }}
-                                    transition={{ delay: i * 0.04, duration: 0.25 }}
                                     onClick={() => scrollTo(link.href)}
-                                    className="text-lg font-medium text-text-muted hover:text-text-primary transition-colors"
+                                    className="text-left px-2 py-3 text-[15px] text-text-muted hover:text-text-primary transition-colors"
                                 >
                                     {link.label}
-                                </motion.button>
+                                </button>
                             ))}
-                            <motion.button
-                                initial={{ opacity: 0, y: 16 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -8 }}
-                                transition={{ delay: NAV_LINKS.length * 0.04, duration: 0.25 }}
-                                onClick={() => scrollTo("#contact")}
-                                className="mt-4 btn-primary"
-                            >
-                                <span>Start a Project</span>
-                            </motion.button>
+                            <button onClick={() => scrollTo("#contact")} className="btn-primary mt-6 w-full">
+                                Start a project
+                            </button>
                         </div>
                     </motion.div>
                 )}

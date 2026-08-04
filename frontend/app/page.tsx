@@ -1,16 +1,20 @@
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import StatsBar from "@/components/StatsBar";
+import LogoMarquee from "@/components/LogoMarquee";
+import About from "@/components/About";
+import StickyCTA from "@/components/StickyCTA";
 
-// Lazy load below-the-fold components
-const Services = dynamic(() => import("@/components/Services"), {
+const Projects = dynamic(() => import("@/components/Projects"), {
     loading: () => <div className="h-96" />,
 });
 const WhyUs = dynamic(() => import("@/components/WhyUs"), {
     loading: () => <div className="h-96" />,
 });
-const Projects = dynamic(() => import("@/components/Projects"), {
+const Services = dynamic(() => import("@/components/Services"), {
+    loading: () => <div className="h-96" />,
+});
+const Pricing = dynamic(() => import("@/components/Pricing"), {
     loading: () => <div className="h-96" />,
 });
 const Process = dynamic(() => import("@/components/Process"), {
@@ -19,7 +23,22 @@ const Process = dynamic(() => import("@/components/Process"), {
 const Testimonials = dynamic(() => import("@/components/Testimonials"), {
     loading: () => <div className="h-96" />,
 });
+const Differentiators = dynamic(() => import("@/components/Differentiators"), {
+    loading: () => <div className="h-64" />,
+});
+const Belief = dynamic(() => import("@/components/Belief"), {
+    loading: () => <div className="h-64" />,
+});
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+    loading: () => <div className="h-96" />,
+});
 const CTABanner = dynamic(() => import("@/components/CTABanner"), {
+    loading: () => <div className="h-40" />,
+});
+const LimitedCapacity = dynamic(() => import("@/components/LimitedCapacity"), {
+    loading: () => <div className="h-40" />,
+});
+const FinalCTA = dynamic(() => import("@/components/FinalCTA"), {
     loading: () => <div className="h-40" />,
 });
 const Contact = dynamic(() => import("@/components/Contact"), {
@@ -33,15 +52,23 @@ export default function Home() {
     return (
         <>
             <Navbar />
+            <StickyCTA />
             <main>
                 <Hero />
-                <StatsBar />
-                <Services />
-                <WhyUs />
+                <LogoMarquee />
+                <About />
                 <Projects />
+                <WhyUs />
+                <Services />
+                <Pricing />
                 <Process />
                 <Testimonials />
+                <Differentiators />
+                <Belief />
+                <FAQ />
                 <CTABanner />
+                <LimitedCapacity />
+                <FinalCTA />
                 <Contact />
             </main>
             <Footer />

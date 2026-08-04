@@ -1,38 +1,65 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Globe, Layers, MessageSquare, Zap, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { fadeInUp, staggerContainerSlow } from "@/lib/animations";
-import { SERVICES } from "@/lib/constants";
+import { BUILD_SERVICES, OPERATE_SERVICES } from "@/lib/constants";
 import SectionHeading from "./SectionHeading";
 
-const iconMap: Record<string, React.ReactNode> = {
-    Globe: <Globe size={24} strokeWidth={1.5} />,
-    Layers: <Layers size={24} strokeWidth={1.5} />,
-    MessageSquare: <MessageSquare size={24} strokeWidth={1.5} />,
-    Zap: <Zap size={24} strokeWidth={1.5} />,
-};
+function ServiceColumn({
+    label,
+    title,
+    subtitle,
+    services,
+}: {
+    label: string;
+    title: string;
+    subtitle: string;
+    services: readonly {
+        title: string;
+        description: string;
+        price: string;
+        items: readonly { name: string; price: string }[];
+    }[];
+}) {
+    return (
+        <div className="glass-card p-6 sm:p-8">
+            <p className="mono-label mb-2">{label}</p>
+            <h3 className="text-lg font-semibold text-text-primary">{title}</h3>
+            <p className="text-[13px] text-text-muted mt-1 mb-6">{subtitle}</p>
+
+            {services.map((service) => (
+                <div key={service.title} className="mb-6 last:mb-0">
+                    <h4 className="text-[14px] font-medium text-text-primary mb-3">{service.title}</h4>
+                    <div className="space-y-2">
+                        {service.items.map((item) => (
+                            <div
+                                key={item.name}
+                                className="flex items-center justify-between py-2 border-b border-white/[0.04] last:border-0"
+                            >
+                                <span className="text-[13px] text-text-muted">{item.name}</span>
+                                <span className="mono-label text-[10px] normal-case whitespace-nowrap">{item.price}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+}
 
 export default function Services() {
+    const scrollTo = () => {
+        document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+    };
+
     return (
-        <section id="services" className="section-padding section-alt relative overflow-hidden">
-            {/* Section top divider */}
-            <div className="absolute top-0 left-0 right-0 section-divider" />
-
-            {/* Background visual — absolute positioned, true background */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <img
-                    src="/images/services-visual.png"
-                    alt=""
-                    className="w-full max-w-[700px] h-auto opacity-[0.06]"
-                />
-            </div>
-
-            <div className="container-custom relative z-10">
+        <section id="services" className="section-padding section-alt relative">
+            <div className="container-custom">
                 <SectionHeading
-                    label="Services"
-                    title="What We Build"
-                    description="End-to-end digital solutions that combine stunning design with intelligent technology."
+                    label="What we do"
+                    title="Two ways we accelerate your business"
+                    description="Build what the world sees. Operate at a speed they can't match."
                 />
 
                 <motion.div
@@ -40,41 +67,65 @@ export default function Services() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-80px" }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 mt-14 sm:mt-20"
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 lg:mt-16"
                 >
-                    {SERVICES.map((service) => (
-                        <motion.div
-                            key={service.title}
-                            variants={fadeInUp}
-                            className="group glass-card glass-card-interactive p-6 sm:p-8 lg:p-12 rounded-2xl"
-                        >
-                            {/* Icon */}
-                            <div className="icon-box icon-box-glow mb-5 sm:mb-8">
-                                {iconMap[service.icon]}
-                            </div>
+                    <motion.div variants={fadeInUp}>
+                        <ServiceColumn
+                            label="Build"
+                            title="What the world sees"
+                            subtitle="Websites, SaaS — AI-native delivery."
+                            services={BUILD_SERVICES}
+                        />
+                    </motion.div>
+                    <motion.div variants={fadeInUp}>
+                        <ServiceColumn
+                            label="Operate"
+                            title="How you actually work"
+                            subtitle="AI chatbots, automation, integrations."
+                            services={OPERATE_SERVICES}
+                        />
+                    </motion.div>
+                </motion.div>
 
-                            {/* Title */}
-                            <h3 className="text-[16px] sm:text-[18px] font-semibold text-text-primary mb-3 sm:mb-5 tracking-[-0.01em]">
-                                {service.title}
-                            </h3>
+                <motion.div
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4"
+                >
+                    <div className="glass-card p-5 flex items-center justify-between gap-4">
+                        <div>
+                            <p className="text-[13px] font-medium text-text-primary">Free Discovery Call</p>
+                            <p className="text-[12px] text-text-dim mt-0.5">30 min · no commitment</p>
+                        </div>
+                        <span className="mono-label text-accent normal-case">Free</span>
+                    </div>
+                    <div className="glass-card p-5 flex items-center justify-between gap-4">
+                        <div>
+                            <p className="text-[13px] font-medium text-text-primary">Production-ready stack</p>
+                            <p className="text-[12px] text-text-dim mt-0.5">Next.js · TypeScript · Vercel</p>
+                        </div>
+                        <span className="mono-label text-text-dim normal-case">95+ Lighthouse</span>
+                    </div>
+                </motion.div>
 
-                            {/* Description — generous line-height for readability */}
-                            <p className="text-[13.5px] sm:text-[14.5px] text-text-muted leading-[1.8] sm:leading-[1.9] font-light mb-5 sm:mb-8">
-                                {service.description}
-                            </p>
-
-                            {/* Learn more */}
-                            <div className="flex items-center gap-2.5 text-[13px] text-text-dim group-hover:text-accent-indigo transition-colors duration-300 pt-2">
-                                <span>Learn more</span>
-                                <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-300" />
-                            </div>
-                        </motion.div>
-                    ))}
+                <motion.div
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 glass-card"
+                >
+                    <p className="text-[14px] text-text-muted">
+                        Custom pricing: MVP and product builds scoped in discovery.
+                    </p>
+                    <button onClick={scrollTo} className="btn-secondary text-[13px] py-2.5 px-5 shrink-0">
+                        Book a call
+                        <ArrowRight size={14} />
+                    </button>
                 </motion.div>
             </div>
-
-            {/* Section bottom divider */}
-            <div className="absolute bottom-0 left-0 right-0 section-divider" />
         </section>
     );
 }

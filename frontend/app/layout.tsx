@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         type: "website",
         images: [
             {
-                url: "/og-image.png",
+                url: "/images/Soup_AI_Logo.jpeg",
                 width: 1200,
                 height: 630,
                 alt: "SOUP AI — Building Fast, Intelligent Digital Experiences",
@@ -41,14 +41,15 @@ export const metadata: Metadata = {
         title: "SOUP AI — Building Fast, Intelligent Digital Experiences",
         description:
             "We build high-performance websites, scalable SaaS platforms, and AI-powered automation for startups and businesses.",
-        images: ["/og-image.png"],
+        images: ["/images/Soup_AI_Logo.jpeg"],
     },
     robots: {
         index: true,
         follow: true,
     },
     icons: {
-        icon: "/favicon.ico",
+        icon: "/images/Soup_AI_Logo.jpeg",
+        apple: "/images/Soup_AI_Logo.jpeg",
     },
 };
 
@@ -67,7 +68,7 @@ export default function RootLayout({
                     crossOrigin="anonymous"
                 />
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
                     rel="stylesheet"
                 />
             </head>
@@ -78,17 +79,16 @@ export default function RootLayout({
                     toastOptions={{
                         duration: 4000,
                         style: {
-                            background: "#151c2c",
-                            color: "#F9FAFB",
-                            border: "1px solid rgba(99, 102, 241, 0.2)",
-                            borderRadius: "12px",
+                            background: "#0f0f0f",
+                            color: "#f0ede8",
+                            border: "1px solid rgba(255, 255, 255, 0.08)",
+                            borderRadius: "8px",
                             fontSize: "14px",
-                            backdropFilter: "blur(20px)",
                         },
                         success: {
                             iconTheme: {
-                                primary: "#10B981",
-                                secondary: "#F9FAFB",
+                                primary: "#c8f55a",
+                                secondary: "#0a0a0a",
                             },
                         },
                         error: {

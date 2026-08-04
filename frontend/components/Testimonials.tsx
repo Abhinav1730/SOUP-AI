@@ -1,69 +1,94 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Star } from "lucide-react";
-import { fadeInUp, staggerContainerSlow } from "@/lib/animations";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { fadeInUp } from "@/lib/animations";
 import { TESTIMONIALS } from "@/lib/constants";
 import SectionHeading from "./SectionHeading";
 
 export default function Testimonials() {
-    return (
-        <section id="testimonials" className="section-padding section-alt relative">
-            <div className="absolute top-0 left-0 right-0 section-divider" />
+    const [current, setCurrent] = useState(0);
 
-            <div className="container-custom relative z-10">
+    const prev = () => setCurrent((c) => (c === 0 ? TESTIMONIALS.length - 1 : c - 1));
+    const next = () => setCurrent((c) => (c === TESTIMONIALS.length - 1 ? 0 : c + 1));
+
+    return (
+        <section id="testimonials" className="section-padding relative overflow-hidden">
+            <div className="container-custom">
                 <SectionHeading
-                    label="Testimonials"
-                    title="What Our Clients Say"
-                    description="Hear from the founders and teams we've partnered with."
+                    label="What clients say"
+                    title="Results speak. So do they."
                 />
 
                 <motion.div
-                    variants={staggerContainerSlow}
+                    variants={fadeInUp}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-80px" }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 mt-14 sm:mt-20"
+                    className="mt-12 lg:mt-16"
                 >
-                    {TESTIMONIALS.map((testimonial, i) => (
-                        <motion.div
-                            key={i}
-                            variants={fadeInUp}
-                            className="glass-card glass-card-interactive p-6 sm:p-8 lg:p-12 rounded-2xl relative"
-                        >
-                            {/* Stars */}
-                            <div className="flex items-center gap-1.5 mb-5 sm:mb-8">
-                                {[...Array(5)].map((_, j) => (
-                                    <Star key={j} size={13} className="fill-amber-400/70 text-amber-400/70" />
+                    <div className="glass-card p-8 sm:p-12 lg:p-16 min-h-[280px] flex flex-col justify-between">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={current}
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                transition={{ duration: 0.25 }}
+                            >
+                                <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-text-secondary leading-relaxed font-light">
+                                    &ldquo;{TESTIMONIALS[current].content}&rdquo;
+                                </p>
+                                <div className="flex items-center gap-4 mt-8">
+                                    <div className="w-10 h-10 rounded-md bg-white/[0.06] border border-white/[0.08] flex items-center justify-center text-[12px] font-semibold text-text-muted">
+                                        {TESTIMONIALS[current].avatar}
+                                    </div>
+                                    <div>
+                                        <div className="text-[14px] font-medium text-text-primary">
+                                            {TESTIMONIALS[current].name}
+                                        </div>
+                                        <div className="text-[13px] text-text-dim">
+                                            {TESTIMONIALS[current].role}
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </AnimatePresence>
+
+                        <div className="flex items-center justify-between mt-10 pt-6 border-t border-white/[0.06]">
+                            <div className="flex items-center gap-2">
+                                {TESTIMONIALS.map((_, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => setCurrent(i)}
+                                        aria-label={`Go to testimonial ${i + 1}`}
+                                        className={`w-2 h-2 rounded-full transition-colors ${
+                                            i === current ? "bg-accent" : "bg-white/20"
+                                        }`}
+                                    />
                                 ))}
                             </div>
-
-                            {/* Quote — generous line-height */}
-                            <p className="text-[13.5px] sm:text-[14.5px] text-text-secondary leading-[1.8] sm:leading-[1.9] font-light mb-6 sm:mb-10">
-                                &ldquo;{testimonial.content}&rdquo;
-                            </p>
-
-                            {/* Author */}
-                            <div className="flex items-center gap-4.5">
-                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-indigo/60 to-accent-cyan/40 flex items-center justify-center text-white text-[12px] font-bold">
-                                    {testimonial.avatar}
-                                </div>
-                                <div>
-                                    <div className="text-[14px] font-semibold text-text-primary mb-1">{testimonial.name}</div>
-                                    <div className="text-[12.5px] text-text-dim font-light">{testimonial.role}</div>
-                                </div>
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={prev}
+                                    className="w-9 h-9 rounded-md border border-white/[0.08] flex items-center justify-center text-text-dim hover:text-text-primary hover:border-white/[0.15] transition-colors"
+                                    aria-label="Previous testimonial"
+                                >
+                                    <ChevronLeft size={16} />
+                                </button>
+                                <button
+                                    onClick={next}
+                                    className="w-9 h-9 rounded-md border border-white/[0.08] flex items-center justify-center text-text-dim hover:text-text-primary hover:border-white/[0.15] transition-colors"
+                                    aria-label="Next testimonial"
+                                >
+                                    <ChevronRight size={16} />
+                                </button>
                             </div>
-
-                            {/* Decorative quote */}
-                            <div className="absolute top-6 right-7 text-[64px] leading-none font-serif text-white/[0.02] select-none pointer-events-none">
-                                &ldquo;
-                            </div>
-                        </motion.div>
-                    ))}
+                        </div>
+                    </div>
                 </motion.div>
             </div>
-
-            <div className="absolute bottom-0 left-0 right-0 section-divider" />
         </section>
     );
 }

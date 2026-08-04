@@ -16,16 +16,14 @@ export default function SectionHeading({ label, title, description }: SectionHea
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            className="text-center max-w-2xl mx-auto"
+            className="w-full"
         >
-            <span className="badge badge-accent mb-8 inline-flex text-[12.5px] uppercase tracking-[0.12em]">
-                {label}
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-text-primary leading-[1.2] mb-6" style={{ wordSpacing: '0.03em' }}>
+            <p className="mono-label mb-4">{label}</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-semibold tracking-[-0.03em] text-text-primary leading-[1.12] max-w-5xl">
                 {title}
             </h2>
             {description && (
-                <p className="text-text-muted text-base lg:text-lg leading-[1.85] font-light max-w-xl mx-auto mt-4">
+                <p className="text-text-muted text-[15px] sm:text-base leading-relaxed mt-4 max-w-3xl">
                     {description}
                 </p>
             )}
