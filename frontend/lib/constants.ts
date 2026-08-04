@@ -62,8 +62,8 @@ export const OPERATE_SERVICES = [
 export const PRICING_PACKAGES = [
     {
         name: "Launch",
-        price: "$5,000",
-        save: "~$2,000",
+        price: "$1,000",
+        save: "~$500",
         tagline: "You need to exist online. Now.",
         features: [
             "Discovery & strategy session",
@@ -71,13 +71,13 @@ export const PRICING_PACKAGES = [
             "Mobile-responsive + SEO setup",
             "2 revision rounds",
         ],
-        delivery: "~3 weeks",
+        delivery: "1–1.5 weeks",
         featured: false,
     },
     {
         name: "Growth",
-        price: "$15,000",
-        save: "~$5,000",
+        price: "$1,750",
+        save: "~$750",
         tagline: "Web + AI — complete digital presence.",
         features: [
             "Everything in Launch",
@@ -85,7 +85,7 @@ export const PRICING_PACKAGES = [
             "Auth + dashboard setup",
             "1 month post-launch support",
         ],
-        delivery: "6–8 weeks",
+        delivery: "2–3 weeks",
         featured: true,
     },
     {

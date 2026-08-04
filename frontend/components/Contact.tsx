@@ -71,7 +71,9 @@ export default function Contact({ embedded = false }: { embedded?: boolean }) {
     return (
         <section
             id="contact"
-            className={`section-padding relative ${embedded ? "" : "pt-28 lg:pt-32"}`}
+            className={`section-padding relative overflow-x-clip ${
+                embedded ? "section-alt border-t border-white/[0.06]" : "pt-28 lg:pt-32"
+            }`}
         >
             <div className="container-custom">
                 <SectionHeading
