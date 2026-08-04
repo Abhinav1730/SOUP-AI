@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Pricing from "@/components/Pricing";
-import LimitedCapacity from "@/components/LimitedCapacity";
-import CTABanner from "@/components/CTABanner";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
@@ -10,11 +8,11 @@ import StickyCTA from "@/components/StickyCTA";
 export const metadata: Metadata = {
     title: "Pricing — SOUP AI",
     description:
-        "Packages or à la carte — Launch, Growth, and Transformation tiers for websites, SaaS, and AI automation. Every package starts with a free discovery call.",
+        "À la carte pricing for websites, SaaS, AI chatbots, and automation. One-time builds or monthly retainers — clear line-item pricing with no hidden fees.",
     openGraph: {
         title: "Pricing — SOUP AI",
         description:
-            "Packages or à la carte — pick what fits your stage. Launch from $1,000 USD.",
+            "Line-item pricing for build and operate services. Toggle one-time or monthly retainers.",
     },
 };
 
@@ -23,10 +21,8 @@ export default function PricingPage() {
         <>
             <Navbar />
             <StickyCTA />
-            <main className="overflow-x-clip max-w-full">
+            <main className="overflow-x-clip max-w-full pt-16 lg:pt-[72px]">
                 <Pricing />
-                <LimitedCapacity />
-                <CTABanner />
                 <Contact embedded />
             </main>
             <Footer />

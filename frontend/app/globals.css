@@ -373,6 +373,70 @@
     box-shadow: none;
   }
 
+  /* ===== PRICING BILLING TOGGLE ===== */
+  .pricing-billing-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+    max-width: 520px;
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border-subtle);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .pricing-billing-toggle__option {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .pricing-billing-toggle__option:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .pricing-billing-toggle__option.is-active {
+    background: rgba(200, 245, 90, 0.08);
+    border-color: rgba(200, 245, 90, 0.22);
+  }
+
+  .pricing-billing-toggle__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+  }
+
+  .pricing-billing-toggle__option.is-active .pricing-billing-toggle__label {
+    color: var(--color-accent);
+  }
+
+  .pricing-billing-toggle__hint {
+    font-size: 11px;
+    line-height: 1.35;
+    color: var(--color-text-dim);
+  }
+
+  @media (max-width: 639px) {
+    .pricing-billing-toggle__option {
+      padding: 10px 12px;
+    }
+
+    .pricing-billing-toggle__hint {
+      font-size: 10px;
+    }
+  }
+
   /* ===== BADGE / TAG ===== */
   .badge {
     display: inline-flex;
@@ -494,6 +558,10 @@
     padding: 4px 12px 8px;
   }
 
+  .services-carousel-flat .carousel-flat-stage {
+    padding: 4px 12px 8px;
+  }
+
   .carousel-3d-root {
     position: relative;
     width: 100%;
@@ -557,11 +625,15 @@
   }
 
   @media (max-width: 639px) {
-    .services-carousel-scene {
+    .services-carousel-scene:not(.carousel-scene-flat) {
       height: clamp(300px, 88vw, 360px);
       perspective: 1000px;
       -webkit-perspective: 1000px;
       perspective-origin: 50% 46%;
+    }
+
+    .services-carousel-scene.carousel-scene-flat {
+      height: auto;
     }
 
     .projects-carousel-scene:not(.carousel-scene-flat) {

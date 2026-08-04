@@ -176,7 +176,7 @@ function GlobalAbout() {
                             <ArrowRight size={14} />
                         </button>
                         <button
-                            onClick={() => scrollTo("#services")}
+                            onClick={() => navigateTo("/pricing")}
                             className="btn-secondary btn-secondary-dot"
                         >
                             See services
@@ -270,7 +270,7 @@ function IndiaAbout() {
                             <ArrowRight size={14} />
                         </button>
                         <button
-                            onClick={() => scrollTo("#services")}
+                            onClick={() => navigateTo("/pricing")}
                             className="btn-secondary btn-secondary-dot"
                         >
                             See pricing

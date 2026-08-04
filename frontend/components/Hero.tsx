@@ -49,10 +49,6 @@ export default function Hero() {
         return () => clearInterval(typeInterval);
     }, [lineIndex]);
 
-    const scrollTo = (href: string) => {
-        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-    };
-
     return (
         <section className="relative min-h-screen flex flex-col pt-20 pb-12 hero-grid">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(200,245,90,0.06),transparent)] pointer-events-none" />
@@ -176,7 +172,7 @@ export default function Hero() {
                                     <span className="inline-block w-[6px] h-[14px] bg-success/70 ml-0.5 align-middle animate-[blink_1s_step-end_infinite]" />
                                 </div>
                                 <button
-                                    onClick={() => scrollTo("#services")}
+                                    onClick={() => navigateTo("/pricing")}
                                     className="mt-4 text-[12px] text-text-dim hover:text-accent transition-colors flex items-center gap-1"
                                 >
                                     see all →

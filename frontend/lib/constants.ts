@@ -4,9 +4,9 @@ export const LOGO = {
 } as const;
 
 export const NAV_LINKS = [
+    { label: "Home", href: "/" },
     { label: "About", href: "#about" },
     { label: "Work", href: "#projects" },
-    { label: "Services", href: "#services" },
     { label: "Pricing", href: "/pricing" },
     { label: "Process", href: "/process" },
     { label: "FAQ", href: "/faq" },
@@ -19,19 +19,20 @@ export const BUILD_SERVICES = [
         description: "High-performance business websites built for speed, SEO, and conversions.",
         price: "From $2,500",
         items: [
-            { name: "Business website (3–5 pages)", price: "$2,500" },
-            { name: "Premium website + animations", price: "$5,000" },
-            { name: "E-commerce / custom web app", price: "$8,000+" },
+            { name: "Business website (3–5 pages)", price: "$500", billing: "one-time" as const },
+            { name: "Premium website + animations", price: "$800", billing: "one-time" as const },
+            { name: "E-commerce / custom web app", price: "$1,000-2,500", billing: "one-time" as const },
+            { name: "Website care & updates", price: "From $500/mo", billing: "monthly" as const },
         ],
     },
     {
         title: "SaaS Development",
         description: "Full-stack SaaS with auth, billing, dashboards, and scalable architecture.",
-        price: "From $15,000",
+        price: "From $1,500",
         items: [
-            { name: "MVP (core features)", price: "$15,000" },
-            { name: "Full SaaS platform", price: "$25,000+" },
-            { name: "Monthly retainer", price: "From $3,000/mo" },
+            { name: "MVP (core features)", price: "$1,500", billing: "one-time" as const },
+            { name: "Full SaaS platform", price: "$2,000+", billing: "one-time" as const },
+            { name: "Monthly dev retainer", price: "From $2,500/mo", billing: "monthly" as const },
         ],
     },
 ] as const;
@@ -40,21 +41,22 @@ export const OPERATE_SERVICES = [
     {
         title: "AI Chatbots",
         description: "Conversational agents that qualify leads, handle support, and drive engagement 24/7.",
-        price: "From $5,000",
+        price: "From $1,000",
         items: [
-            { name: "Support chatbot", price: "$5,000" },
-            { name: "Multi-channel AI agent", price: "$10,000" },
-            { name: "Custom LLM integration", price: "Custom" },
+            { name: "Support chatbot", price: "$1,000", billing: "one-time" as const },
+            { name: "Multi-channel AI agent", price: "$1,750", billing: "one-time" as const },
+            { name: "Custom LLM integration", price: "Custom", billing: "one-time" as const },
+            { name: "Chatbot maintenance & tuning", price: "From $750/mo", billing: "monthly" as const },
         ],
     },
     {
         title: "AI Automation",
         description: "Voice assistants, workflow automation, and CRM integrations that eliminate repetitive tasks.",
-        price: "From $8,000",
+        price: "From $1,000",
         items: [
-            { name: "Workflow automation", price: "$8,000" },
-            { name: "Voice + CRM integration", price: "$12,000" },
-            { name: "AI Ops retainer", price: "From $2,500/mo" },
+            { name: "Workflow automation", price: "$1,500", billing: "one-time" as const },
+            { name: "Voice + CRM integration", price: "$2,500", billing: "one-time" as const },
+            { name: "AI Ops retainer", price: "From $2,000/mo", billing: "monthly" as const },
         ],
     },
 ] as const;
@@ -62,45 +64,87 @@ export const OPERATE_SERVICES = [
 export const PRICING_PACKAGES = [
     {
         name: "Launch",
-        price: "$1,000",
-        save: "~$500",
-        tagline: "You need to exist online. Now.",
-        features: [
-            "Discovery & strategy session",
-            "Premium business website (3–5 pages)",
-            "Mobile-responsive + SEO setup",
-            "2 revision rounds",
-        ],
-        delivery: "1–1.5 weeks",
         featured: false,
+        oneTime: {
+            price: "$1,000",
+            save: "~$500",
+            tagline: "You need to exist online. Now.",
+            features: [
+                "Discovery & strategy session",
+                "Premium business website (3–5 pages)",
+                "Mobile-responsive + SEO setup",
+                "2 revision rounds",
+            ],
+            delivery: "1–1.5 weeks",
+        },
+        monthly: {
+            price: "$500",
+            save: null,
+            tagline: "Keep your site fast, secure, and updated.",
+            features: [
+                "Hosting & uptime monitoring",
+                "Security patches & dependency updates",
+                "Minor content & copy edits",
+                "Monthly performance report",
+            ],
+            delivery: "Ongoing",
+        },
     },
     {
         name: "Growth",
-        price: "$1,750",
-        save: "~$750",
-        tagline: "Web + AI — complete digital presence.",
-        features: [
-            "Everything in Launch",
-            "SaaS MVP or AI chatbot",
-            "Auth + dashboard setup",
-            "1 month post-launch support",
-        ],
-        delivery: "2–3 weeks",
         featured: true,
+        oneTime: {
+            price: "$1,750",
+            save: "~$750",
+            tagline: "Web + AI — complete digital presence.",
+            features: [
+                "Everything in Launch",
+                "SaaS MVP or AI chatbot",
+                "Auth + dashboard setup",
+                "1 month post-launch support",
+            ],
+            delivery: "2–3 weeks",
+        },
+        monthly: {
+            price: "$2,500",
+            save: null,
+            tagline: "Ongoing product iteration and AI ops.",
+            features: [
+                "Everything in Launch Care",
+                "Feature iterations & bug fixes",
+                "AI chatbot monitoring & tuning",
+                "Priority support queue",
+            ],
+            delivery: "Ongoing",
+        },
     },
     {
         name: "Transformation",
-        price: "Custom",
-        save: null,
-        tagline: "Full-stack product + AI operations.",
-        features: [
-            "Full SaaS platform build",
-            "AI automation suite",
-            "Ongoing dev retainer (3 months)",
-            "Priority support & scaling",
-        ],
-        delivery: "Scoped in discovery",
         featured: false,
+        oneTime: {
+            price: "Custom",
+            save: null,
+            tagline: "Full-stack product + AI operations.",
+            features: [
+                "Full SaaS platform build",
+                "AI automation suite",
+                "Ongoing dev retainer (3 months)",
+                "Priority support & scaling",
+            ],
+            delivery: "Scoped in discovery",
+        },
+        monthly: {
+            price: "Custom",
+            save: null,
+            tagline: "Dedicated team for scale-stage products.",
+            features: [
+                "Dedicated dev & AI ops team",
+                "Roadmap planning & execution",
+                "Infrastructure & performance tuning",
+                "SLA-backed priority support",
+            ],
+            delivery: "Scoped in discovery",
+        },
     },
 ] as const;
 
@@ -345,13 +389,27 @@ export const TESTIMONIALS = [
     },
 ] as const;
 
-export const BUDGET_OPTIONS = [
-    "Under $5,000",
-    "$5,000 - $15,000",
-    "$15,000 - $50,000",
-    "$50,000+",
+export const BUDGET_OPTIONS_GLOBAL = [
+    "$1,000 – $1,500",
+    "$1,500 – $2,500",
+    "$2,500 – $5,000",
     "Not sure yet",
 ] as const;
+
+export const BUDGET_OPTIONS_INDIA = [
+    "₹20,000 – ₹30,000",
+    "₹30,000 – ₹45,000",
+    "₹50,000 – ₹80,000",
+    "₹1 Lakh+",
+    "Not sure yet",
+] as const;
+
+/** @deprecated Use getBudgetOptions(isIndia) */
+export const BUDGET_OPTIONS = BUDGET_OPTIONS_GLOBAL;
+
+export function getBudgetOptions(isIndia: boolean): readonly string[] {
+    return isIndia ? BUDGET_OPTIONS_INDIA : BUDGET_OPTIONS_GLOBAL;
+}
 
 export const SOCIAL_LINKS = {
     twitter: "https://twitter.com/soupai",
@@ -383,6 +441,45 @@ export const GLOBAL_ABOUT = {
     closing:
         "We handle the technology — so you can focus on what matters most: growing your business.",
 } as const;
+
+export const GLOBAL_SERVICES_CAROUSEL = [
+    {
+        title: "Website Development",
+        description:
+            "High-performance business websites built for speed, SEO, and conversions — from landing pages to e-commerce.",
+        icon: "Monitor",
+    },
+    {
+        title: "SaaS Development",
+        description:
+            "Full-stack SaaS with auth, billing, dashboards, and scalable architecture — MVP to production.",
+        icon: "Code2",
+    },
+    {
+        title: "UI / UX Design",
+        description:
+            "Modern, conversion-focused design systems and interfaces that look sharp and feel effortless to use.",
+        icon: "PenTool",
+    },
+    {
+        title: "AI Chatbots",
+        description:
+            "Conversational agents that qualify leads, handle support, and drive engagement 24/7 across channels.",
+        icon: "Brain",
+    },
+    {
+        title: "AI Automation",
+        description:
+            "Workflow automation, voice assistants, and CRM integrations that eliminate repetitive tasks.",
+        icon: "MessageCircle",
+    },
+    {
+        title: "Product Strategy",
+        description:
+            "Discovery, scoping, and technical planning — clear deliverables, timelines, and pricing before we build.",
+        icon: "LayoutList",
+    },
+] as const;
 
 export const INDIA_ABOUT = {
     tagline: "Smart solutions. Real impact.",

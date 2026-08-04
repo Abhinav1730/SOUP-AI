@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 export const metadata: Metadata = {
     title: "FAQ — SOUP AI",
@@ -17,7 +18,8 @@ export default function FAQPage() {
     return (
         <>
             <Navbar />
-            <main>
+            <StickyCTA />
+            <main className="overflow-x-clip max-w-full pt-16 lg:pt-[72px]">
                 <FAQ />
             </main>
             <Footer />

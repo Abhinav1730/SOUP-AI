@@ -9,9 +9,6 @@ import StickyCTA from "@/components/StickyCTA";
 const Projects = dynamic(() => import("@/components/Projects"), {
     loading: () => <div className="h-96" />,
 });
-const Services = dynamic(() => import("@/components/Services"), {
-    loading: () => <div className="h-96" />,
-});
 const Testimonials = dynamic(() => import("@/components/Testimonials"), {
     loading: () => <div className="h-96" />,
 });
@@ -45,7 +42,6 @@ export default function Home() {
                 <LogoMarquee />
                 <About />
                 <Projects />
-                <Services />
                 <Testimonials />
                 <Differentiators />
                 <Belief />

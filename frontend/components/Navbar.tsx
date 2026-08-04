@@ -107,7 +107,7 @@ export default function Navbar() {
                                                     {BUILD_SERVICES.map((s) => (
                                                         <button
                                                             key={s.title}
-                                                            onClick={() => handleNav("#services")}
+                                                            onClick={() => handleNav("/pricing")}
                                                             className="block w-full text-left py-2 text-[13px] text-text-muted hover:text-text-primary transition-colors"
                                                         >
                                                             {s.title}
@@ -119,7 +119,7 @@ export default function Navbar() {
                                                     {OPERATE_SERVICES.map((s) => (
                                                         <button
                                                             key={s.title}
-                                                            onClick={() => handleNav("#services")}
+                                                            onClick={() => handleNav("/pricing")}
                                                             className="block w-full text-left py-2 text-[13px] text-text-muted hover:text-text-primary transition-colors"
                                                         >
                                                             {s.title}
@@ -132,9 +132,9 @@ export default function Navbar() {
                                 </AnimatePresence>
                             </div>
 
-                            {NAV_LINKS.filter((l) => l.label !== "Services").map((link) => (
+                            {NAV_LINKS.map((link) => (
                                 <button
-                                    key={link.href}
+                                    key={link.label}
                                     onClick={() => handleNav(link.href)}
                                     className="text-[13px] font-medium text-text-muted hover:text-text-primary transition-colors"
                                 >
@@ -176,16 +176,16 @@ export default function Navbar() {
                             {[...BUILD_SERVICES, ...OPERATE_SERVICES].map((s) => (
                                 <button
                                     key={s.title}
-                                    onClick={() => handleNav("#services")}
+                                    onClick={() => handleNav("/pricing")}
                                     className="text-left px-2 py-3 text-[15px] text-text-muted hover:text-text-primary transition-colors"
                                 >
                                     {s.title}
                                 </button>
                             ))}
                             <div className="h-px bg-white/[0.06] my-4" />
-                            {NAV_LINKS.filter((l) => l.label !== "Services").map((link) => (
+                            {NAV_LINKS.map((link) => (
                                 <button
-                                    key={link.href}
+                                    key={link.label}
                                     onClick={() => handleNav(link.href)}
                                     className="text-left px-2 py-3 text-[15px] text-text-muted hover:text-text-primary transition-colors"
                                 >

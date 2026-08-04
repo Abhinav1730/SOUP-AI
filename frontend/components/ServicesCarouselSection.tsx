@@ -11,11 +11,11 @@ import {
     UserCircle,
 } from "lucide-react";
 import Carousel3D from "@/components/Carousel3D";
-import { INDIA_ABOUT } from "@/lib/constants";
+import { GLOBAL_SERVICES_CAROUSEL, INDIA_ABOUT } from "@/lib/constants";
 import { TYPO } from "@/lib/typography";
 import { useUserCountry } from "@/hooks/useUserCountry";
 
-const indiaIconMap = {
+const serviceIconMap = {
     LayoutList,
     PenTool,
     Code2,
@@ -28,23 +28,29 @@ const indiaIconMap = {
 
 const SERVICES_HOLD_MS = 2500;
 
+type CarouselService = {
+    title: string;
+    description: string;
+    icon: string;
+};
+
 function ServiceCard({
     service,
     index,
     isActive = false,
 }: {
-    service: { title: string; description: string; icon: string };
+    service: CarouselService;
     index: number;
     isActive?: boolean;
 }) {
-    const Icon = indiaIconMap[service.icon as keyof typeof indiaIconMap];
+    const Icon = serviceIconMap[service.icon as keyof typeof serviceIconMap];
 
     return (
         <div
-            className={`glass-card p-5 sm:p-6 w-[min(72vw,260px)] sm:w-[300px] lg:w-[320px] min-h-[220px] sm:min-h-[240px] transition-all duration-500 ${
+            className={`glass-card p-5 sm:p-6 w-full max-w-[min(72vw,260px)] sm:w-[300px] lg:w-[320px] min-h-[220px] sm:min-h-[240px] transition-all duration-500 ${
                 isActive
                     ? "border-accent/25 shadow-[0_0_48px_rgba(200,245,90,0.14)] opacity-100 scale-100"
-                    : "opacity-45 scale-[0.86] sm:blur-[0.5px]"
+                    : "max-sm:invisible max-sm:opacity-0 sm:opacity-45 sm:scale-[0.86] sm:blur-[0.5px]"
             }`}
         >
             <div className="icon-box w-10 h-10 mb-4">
@@ -54,9 +60,7 @@ function ServiceCard({
                 {String(index + 1).padStart(2, "0")}
             </p>
             <h3 className={`${TYPO.card} mb-2`}>{service.title}</h3>
-            <p className={`${TYPO.bodySm} line-clamp-4`}>
-                {service.description}
-            </p>
+            <p className={`${TYPO.bodySm} line-clamp-4`}>{service.description}</p>
         </div>
     );
 }
@@ -64,9 +68,13 @@ function ServiceCard({
 export default function ServicesCarouselSection() {
     const { isIndia, isLoading } = useUserCountry();
 
-    if (isLoading || !isIndia) {
+    if (isLoading) {
         return null;
     }
+
+    const services: readonly CarouselService[] = isIndia
+        ? INDIA_ABOUT.services
+        : GLOBAL_SERVICES_CAROUSEL;
 
     return (
         <section
@@ -79,8 +87,10 @@ export default function ServicesCarouselSection() {
                     <span className="mono-label whitespace-nowrap">Services we provide</span>
                 </div>
                 <Carousel3D
-                    items={INDIA_ABOUT.services}
+                    items={services}
                     holdMs={SERVICES_HOLD_MS}
+                    flatOnMobile
+                    flatSceneClassName="services-carousel-flat"
                     getKey={(service) => service.title}
                     getLabel={(service) => service.title}
                     renderCard={(service, index, isActive) => (

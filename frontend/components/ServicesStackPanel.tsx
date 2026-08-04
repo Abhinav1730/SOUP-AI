@@ -2,15 +2,17 @@
 
 import { motion } from "framer-motion";
 import { BUILD_SERVICES, OPERATE_SERVICES } from "@/lib/constants";
+import {
+    filterServiceCategories,
+    type BillingMode,
+    type ServiceCategory,
+} from "@/lib/pricing";
 
 function ServiceStackRows({
     services,
     startIndex,
 }: {
-    services: readonly {
-        title: string;
-        items: readonly { name: string; price: string }[];
-    }[];
+    services: ServiceCategory[];
     startIndex: number;
 }) {
     let counter = startIndex;
@@ -48,8 +50,15 @@ function ServiceStackRows({
     );
 }
 
-export default function ServicesStackPanel() {
-    const buildItemCount = BUILD_SERVICES.reduce((sum, s) => sum + s.items.length, 0);
+type ServicesStackPanelProps = {
+    billingMode?: BillingMode;
+};
+
+export default function ServicesStackPanel({ billingMode = "one-time" }: ServicesStackPanelProps) {
+    const buildServices = filterServiceCategories(BUILD_SERVICES, billingMode);
+    const operateServices = filterServiceCategories(OPERATE_SERVICES, billingMode);
+    const buildItemCount = buildServices.reduce((sum, service) => sum + service.items.length, 0);
+    const isMonthly = billingMode === "monthly";
 
     return (
         <motion.div
@@ -66,27 +75,42 @@ export default function ServicesStackPanel() {
                         SYSTEM ONLINE
                     </span>
                 </div>
-                <span className="text-[10px] text-text-dim shrink-0 hidden sm:inline">soupai.dev · services</span>
+                <span className="text-[10px] text-text-dim shrink-0 hidden sm:inline">
+                    soupai.dev · {isMonthly ? "retainers" : "services"}
+                </span>
             </div>
 
             <div className="p-4 sm:p-5">
-                <p className="text-[10px] text-text-dim uppercase tracking-wider mb-4">
-                    Build — what the world sees
-                </p>
-                <p className="text-[12px] text-text-muted mb-4 -mt-2">
-                    Websites, SaaS — AI-native delivery.
-                </p>
-                <ServiceStackRows services={BUILD_SERVICES} startIndex={1} />
+                {buildServices.length > 0 && (
+                    <>
+                        <p className="text-[10px] text-text-dim uppercase tracking-wider mb-4">
+                            Build — {isMonthly ? "ongoing product care" : "what the world sees"}
+                        </p>
+                        <p className="text-[12px] text-text-muted mb-4 -mt-2">
+                            {isMonthly
+                                ? "Hosting, updates, and continuous product iteration."
+                                : "Websites, SaaS — AI-native delivery."}
+                        </p>
+                        <ServiceStackRows services={buildServices} startIndex={1} />
+                    </>
+                )}
 
-                <div className="mt-5 pt-4 border-t border-white/[0.06]">
-                    <p className="text-[10px] text-text-dim uppercase tracking-wider mb-4">
-                        Operate — how you actually work
-                    </p>
-                    <p className="text-[12px] text-text-muted mb-4 -mt-2">
-                        AI chatbots, automation, integrations.
-                    </p>
-                    <ServiceStackRows services={OPERATE_SERVICES} startIndex={buildItemCount + 1} />
-                </div>
+                {operateServices.length > 0 && (
+                    <div className={buildServices.length > 0 ? "mt-5 pt-4 border-t border-white/[0.06]" : ""}>
+                        <p className="text-[10px] text-text-dim uppercase tracking-wider mb-4">
+                            Operate — {isMonthly ? "always-on AI ops" : "how you actually work"}
+                        </p>
+                        <p className="text-[12px] text-text-muted mb-4 -mt-2">
+                            {isMonthly
+                                ? "Monitoring, tuning, and automation upkeep."
+                                : "AI chatbots, automation, integrations."}
+                        </p>
+                        <ServiceStackRows
+                            services={operateServices}
+                            startIndex={buildItemCount + 1}
+                        />
+                    </div>
+                )}
 
                 <div className="mt-5 pt-4 border-t border-white/[0.06]">
                     <p className="text-[10px] text-text-dim uppercase tracking-wider mb-3">

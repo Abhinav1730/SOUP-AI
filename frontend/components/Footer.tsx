@@ -53,7 +53,7 @@ export default function Footer() {
                         <h4 className="mono-label mb-4">Navigation</h4>
                         <ul className="space-y-3">
                             {NAV_LINKS.map((link) => (
-                                <li key={link.href}>
+                                <li key={link.label}>
                                     <button onClick={() => handleNav(link.href)} className="text-[13px] text-text-muted hover:text-text-primary transition-colors">
                                         {link.label}
                                     </button>
@@ -67,7 +67,7 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {[...BUILD_SERVICES, ...OPERATE_SERVICES].map((s) => (
                                 <li key={s.title}>
-                                    <button onClick={() => handleNav("#services")} className="text-[13px] text-text-muted hover:text-text-primary transition-colors">
+                                    <button onClick={() => handleNav("/pricing")} className="text-[13px] text-text-muted hover:text-text-primary transition-colors">
                                         {s.title}
                                     </button>
                                 </li>

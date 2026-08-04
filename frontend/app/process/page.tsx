@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Process from "@/components/Process";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 export const metadata: Metadata = {
     title: "Process — SOUP AI",
@@ -17,7 +18,8 @@ export default function ProcessPage() {
     return (
         <>
             <Navbar />
-            <main>
+            <StickyCTA />
+            <main className="overflow-x-clip max-w-full pt-16 lg:pt-[72px]">
                 <Process />
             </main>
             <Footer />
