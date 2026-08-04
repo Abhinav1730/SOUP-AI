@@ -39,7 +39,7 @@ export default function Home() {
         <>
             <Navbar />
             <StickyCTA />
-            <main>
+            <main className="overflow-x-clip max-w-full">
                 <Hero />
                 <ServicesCarouselSection />
                 <LogoMarquee />

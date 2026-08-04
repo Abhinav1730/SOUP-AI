@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const DEFAULT_ROTATE_MS = 0.85;
 const SWIPE_THRESHOLD = 48;
 
-const DEFAULT_RADIUS = { sm: 210, md: 270, lg: 340 };
+const DEFAULT_RADIUS = { sm: 165, md: 250, lg: 340 };
 
 function useCarouselRadius(breakpoints = DEFAULT_RADIUS) {
     const [radius, setRadius] = useState(breakpoints.lg);

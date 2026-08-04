@@ -41,7 +41,7 @@ function ServiceCard({
 
     return (
         <div
-            className={`glass-card p-5 sm:p-6 w-[min(78vw,280px)] sm:w-[300px] lg:w-[320px] min-h-[220px] sm:min-h-[240px] transition-all duration-500 ${
+            className={`glass-card p-5 sm:p-6 w-[min(72vw,260px)] sm:w-[300px] lg:w-[320px] min-h-[220px] sm:min-h-[240px] transition-all duration-500 ${
                 isActive
                     ? "border-accent/25 shadow-[0_0_48px_rgba(200,245,90,0.14)] opacity-100 scale-100"
                     : "opacity-45 scale-[0.86] sm:blur-[0.5px]"
@@ -71,7 +71,7 @@ export default function ServicesCarouselSection() {
     return (
         <section
             id="services-carousel"
-            className="relative py-12 sm:py-16 lg:py-24 hero-grid border-y border-white/[0.06]"
+            className="relative py-12 sm:py-16 lg:py-24 hero-grid border-y border-white/[0.06] overflow-x-clip"
         >
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(200,245,90,0.05),transparent)] pointer-events-none" />
             <div className="container-custom relative z-10">

@@ -10,7 +10,7 @@ import SectionHeading from "./SectionHeading";
 
 const PROJECTS_HOLD_MS = 5000;
 
-const PROJECT_RADIUS = { sm: 235, md: 300, lg: 400 };
+const PROJECT_RADIUS = { sm: 185, md: 280, lg: 400 };
 
 type Project = (typeof PROJECTS)[number];
 
@@ -26,7 +26,7 @@ function ProjectCard({
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`group glass-card glass-card-interactive overflow-hidden block w-[min(78vw,300px)] sm:w-[360px] lg:w-[400px] transition-all duration-500 ${
+            className={`group glass-card glass-card-interactive overflow-hidden block w-[min(72vw,280px)] sm:w-[360px] lg:w-[400px] transition-all duration-500 ${
                 isActive
                     ? "border-accent/25 shadow-[0_0_48px_rgba(200,245,90,0.14)] opacity-100 scale-100"
                     : "opacity-45 scale-[0.86] sm:blur-[0.5px] pointer-events-none"
@@ -71,7 +71,7 @@ function ProjectCard({
 
 export default function Projects() {
     return (
-        <section id="projects" className="section-padding relative">
+        <section id="projects" className="section-padding relative overflow-x-clip">
             <div className="container-custom">
                 <SectionHeading
                     label="Selected work"

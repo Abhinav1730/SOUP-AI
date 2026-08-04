@@ -59,7 +59,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className="scroll-smooth">
+        <html lang="en" className="scroll-smooth overflow-x-clip">
             <head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link
@@ -72,8 +72,8 @@ export default function RootLayout({
                     rel="stylesheet"
                 />
             </head>
-            <body className="antialiased">
-                {children}
+            <body className="antialiased overflow-x-clip">
+                <div className="site-shell">{children}</div>
                 <Toaster
                     position="bottom-right"
                     toastOptions={{

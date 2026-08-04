@@ -53,6 +53,8 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   body {
@@ -60,7 +62,9 @@
     color: var(--color-text-primary);
     font-family: var(--font-body);
     line-height: 1.7;
-    overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100%;
+    overscroll-behavior-x: none;
     animation: page-fade-in 0.6s ease-out;
   }
 
@@ -122,8 +126,14 @@
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    padding-left: clamp(20px, 5vw, 80px);
-    padding-right: clamp(20px, 5vw, 80px);
+    padding-left: clamp(16px, 4vw, 80px);
+    padding-right: clamp(16px, 4vw, 80px);
+  }
+
+  .site-shell {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   .container-bleed {
@@ -444,11 +454,12 @@
   .services-carousel-scene {
     position: relative;
     width: 100%;
+    max-width: 100%;
     height: clamp(280px, 70vw, 380px);
     perspective: 1400px;
     perspective-origin: 50% 42%;
-    overflow: visible;
-    touch-action: pan-y;
+    overflow: hidden;
+    touch-action: pan-y pinch-zoom;
     -webkit-perspective: 1400px;
   }
 
@@ -460,11 +471,15 @@
   .carousel-3d-root {
     position: relative;
     width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .carousel-3d-stage {
     position: relative;
     width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .carousel-3d-controls {
@@ -580,6 +595,18 @@
     align-items: center;
     gap: 16px;
     margin-bottom: 40px;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  @media (max-width: 639px) {
+    .manifesto-bar {
+      gap: 10px;
+    }
+
+    .manifesto-bar .mono-label {
+      white-space: normal;
+    }
   }
 
   .manifesto-bar::after {
