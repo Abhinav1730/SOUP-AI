@@ -13,6 +13,9 @@ export const NAV_LINKS = [
     { label: "Contact", href: "/contact" },
 ] as const;
 
+export const CONTACT_EMAIL = "tech.soup.ai@gmail.com";
+export const CONTACT_MAILTO = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Project inquiry — SOUP AI website")}`;
+
 export const BUILD_SERVICES = [
     {
         title: "Website Development",
@@ -444,28 +447,6 @@ export const TESTIMONIALS = [
         avatar: "DP",
     },
 ] as const;
-
-export const BUDGET_OPTIONS_GLOBAL = [
-    "$1,000 – $1,500",
-    "$1,500 – $2,500",
-    "$2,500 – $5,000",
-    "Not sure yet",
-] as const;
-
-export const BUDGET_OPTIONS_INDIA = [
-    "₹20,000 – ₹30,000",
-    "₹30,000 – ₹45,000",
-    "₹50,000 – ₹80,000",
-    "₹1 Lakh+",
-    "Not sure yet",
-] as const;
-
-/** @deprecated Use getBudgetOptions(isIndia) */
-export const BUDGET_OPTIONS = BUDGET_OPTIONS_GLOBAL;
-
-export function getBudgetOptions(isIndia: boolean): readonly string[] {
-    return isIndia ? BUDGET_OPTIONS_INDIA : BUDGET_OPTIONS_GLOBAL;
-}
 
 export const GLOBAL_ABOUT = {
     tagline: "Smart solutions. Real impact.",

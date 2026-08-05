@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import BillingModeToggle from "@/components/BillingModeToggle";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
-import { navigateTo } from "@/lib/navigation";
 import { BILLING_MODE_LABELS, getPricingFootnote, type BillingMode } from "@/lib/pricing";
+import { CONTACT_MAILTO } from "@/lib/constants";
 import { TYPO } from "@/lib/typography";
 import ServicesStackPanel from "./ServicesStackPanel";
 import { useUserCountry } from "@/hooks/useUserCountry";
@@ -92,20 +92,17 @@ export default function Pricing() {
                                 variants={fadeInUp}
                                 className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4"
                             >
-                                <button
-                                    onClick={() => navigateTo("/contact")}
-                                    className="btn-primary w-full sm:w-auto justify-center"
-                                >
+                                <a href={CONTACT_MAILTO} className="btn-primary w-full sm:w-auto justify-center">
                                     Get a quote
                                     <ArrowRight size={14} />
-                                </button>
-                                <button
-                                    onClick={() => navigateTo("/contact")}
+                                </a>
+                                <a
+                                    href={CONTACT_MAILTO}
                                     className="btn-secondary btn-secondary-dot w-full sm:w-auto justify-center"
                                 >
-                                    Book a call
+                                    Email us
                                     <ArrowRight size={14} />
-                                </button>
+                                </a>
                             </motion.div>
 
                             <motion.div

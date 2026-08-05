@@ -7,10 +7,10 @@ import StickyCTA from "@/components/StickyCTA";
 export const metadata: Metadata = {
     title: "Contact — SOUP AI",
     description:
-        "Start a project with SOUP AI. Book a free discovery call or send us your brief — we respond within 24 hours.",
+        "Email SOUP AI to start a project. We respond within 24 hours — no forms, just a direct line to our team.",
     openGraph: {
         title: "Contact — SOUP AI",
-        description: "Tell us what you're building. We'll reply within 24 hours.",
+        description: "Email us at tech.soup.ai@gmail.com — we reply within 24 hours.",
     },
 };
 

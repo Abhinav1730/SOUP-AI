@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
-import { NAV_LINKS, BUILD_SERVICES, OPERATE_SERVICES } from "@/lib/constants";
+import { NAV_LINKS, BUILD_SERVICES, OPERATE_SERVICES, CONTACT_EMAIL, CONTACT_MAILTO } from "@/lib/constants";
 import { navigateTo } from "@/lib/navigation";
 import Logo from "./Logo";
 
@@ -58,16 +58,16 @@ export default function Footer() {
                         <h4 className="mono-label mb-4">Contact</h4>
                         <ul className="space-y-3 text-[13px] text-text-muted">
                             <li>
-                                <a href="mailto:tech.soup.ai@gmail.com" className="hover:text-text-primary transition-colors">
-                                    tech.soup.ai@gmail.com
+                                <a href={CONTACT_MAILTO} className="hover:text-text-primary transition-colors">
+                                    {CONTACT_EMAIL}
                                 </a>
                             </li>
                             <li>Remote — Working globally</li>
                             <li>Mon–Sat, 9AM–7PM IST</li>
                         </ul>
-                        <button onClick={() => handleNav("/contact")} className="btn-primary mt-5 text-[13px] py-2.5 px-5">
-                            Start a project
-                        </button>
+                        <a href={CONTACT_MAILTO} className="btn-primary mt-5 text-[13px] py-2.5 px-5 inline-flex">
+                            Email us
+                        </a>
                     </motion.div>
                 </motion.div>
 
