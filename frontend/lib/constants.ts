@@ -235,20 +235,28 @@ export const TECH_MARQUEE = [
 
 export const DIFFERENTIATORS = [
     {
-        title: "Fixed scope, clear pricing",
-        description: "No vague 'contact us' games. Every project starts with a clear brief and transparent budget.",
+        title: "Transparent pricing",
+        tagline: "No surprises.",
+        description:
+            "Fixed scope and clear numbers upfront — no vague quotes, no hidden fees. You know exactly what you're paying for before we write a single line of code.",
     },
     {
-        title: "Ship in weeks, not months",
-        description: "AI-accelerated workflows compress timelines without cutting corners on quality.",
+        title: "Live in 1–2 weeks",
+        tagline: "Not months.",
+        description:
+            "AI-accelerated delivery without cutting corners. We ship production-ready work fast — most projects go live in weeks, not quarters.",
     },
     {
         title: "Production-ready code",
-        description: "Clean, scalable architecture — not throwaway prototypes that need rebuilding later.",
+        tagline: "Built to last.",
+        description:
+            "Clean, scalable architecture from day one — not throwaway prototypes you'll need to rebuild six months later.",
     },
     {
-        title: "AI-first architecture",
-        description: "Built with modern stacks that integrate seamlessly with AI, APIs, and future technologies.",
+        title: "AI-native by design",
+        tagline: "Not bolted on.",
+        description:
+            "Modern stacks built to integrate AI, APIs, and automation from the start — so your product grows with technology, not against it.",
     },
 ] as const;
 

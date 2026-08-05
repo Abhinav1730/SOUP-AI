@@ -91,9 +91,10 @@ export default function Hero() {
                             variants={fadeInUp}
                             className={`mt-6 ${TYPO.lead} max-w-2xl`}
                         >
-                            From high-performance websites and SaaS platforms to AI chatbots
-                            and automation — we help startups move at the speed of AI.{" "}
-                            <span className="text-text-primary font-semibold">For real.</span>
+                            Every great brand needs a pulse.{" "}
+                            <span className="text-text-primary font-semibold">
+                                We give yours a <span className="text-accent">brain.</span>
+                            </span>
                         </motion.p>
 
                         <motion.div
