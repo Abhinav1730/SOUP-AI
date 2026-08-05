@@ -6,13 +6,16 @@ import { ArrowRight } from "lucide-react";
 import BillingModeToggle from "@/components/BillingModeToggle";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { navigateTo } from "@/lib/navigation";
-import { BILLING_MODE_LABELS, type BillingMode } from "@/lib/pricing";
+import { BILLING_MODE_LABELS, getPricingFootnote, type BillingMode } from "@/lib/pricing";
 import { TYPO } from "@/lib/typography";
 import ServicesStackPanel from "./ServicesStackPanel";
+import { useUserCountry } from "@/hooks/useUserCountry";
 
 export default function Pricing() {
     const [billingMode, setBillingMode] = useState<BillingMode>("one-time");
+    const { isIndia } = useUserCountry();
     const modeMeta = BILLING_MODE_LABELS[billingMode];
+    const pricingFootnote = getPricingFootnote(isIndia, billingMode);
 
     const headline = useMemo(() => {
         if (billingMode === "monthly") {
@@ -71,7 +74,8 @@ export default function Pricing() {
                             className="min-w-0"
                         >
                             <motion.p variants={fadeInUp} className="mono-label mb-4">
-                                {modeMeta.short} pricing · {billingMode === "monthly" ? "monthly" : "one-time"}
+                                {modeMeta.short} pricing · {billingMode === "monthly" ? "monthly" : "one-time"} ·{" "}
+                                {isIndia ? "INR" : "USD"}
                             </motion.p>
 
                             <motion.h1 variants={fadeInUp} className={`max-w-2xl ${TYPO.hero}`}>
@@ -154,9 +158,7 @@ export default function Pricing() {
                         viewport={{ once: true }}
                         className={`mt-6 ${TYPO.bodySm} text-text-dim`}
                     >
-                        {billingMode === "monthly"
-                            ? "All retainer prices shown in USD per month unless noted. Custom scope available on request."
-                            : "All prices shown in USD. Custom scope available for enterprise projects."}
+                        {pricingFootnote}
                     </motion.p>
                 </div>
             </section>

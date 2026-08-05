@@ -1,18 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Twitter, Linkedin, Instagram, ArrowUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
-import { NAV_LINKS, SOCIAL_LINKS, BUILD_SERVICES, OPERATE_SERVICES } from "@/lib/constants";
+import { NAV_LINKS, BUILD_SERVICES, OPERATE_SERVICES } from "@/lib/constants";
 import { navigateTo } from "@/lib/navigation";
 import Logo from "./Logo";
-
-const socialIcons: Record<string, React.ReactNode> = {
-    twitter: <Twitter size={14} />,
-    linkedin: <Linkedin size={14} />,
-    github: <Github size={14} />,
-    instagram: <Instagram size={14} />,
-};
 
 export default function Footer() {
     const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -30,23 +23,9 @@ export default function Footer() {
                 >
                     <motion.div variants={fadeInUp} className="md:col-span-4">
                         <Logo variant="full" className="h-14" />
-                        <p className="text-[13px] text-text-muted leading-relaxed max-w-xs mt-4 mb-6">
+                        <p className="text-[13px] text-text-muted leading-relaxed max-w-xs mt-4">
                             AI-native studio building fast websites, scalable SaaS, and intelligent automation for startups worldwide.
                         </p>
-                        <div className="flex items-center gap-2">
-                            {Object.entries(SOCIAL_LINKS).map(([key, url]) => (
-                                <a
-                                    key={key}
-                                    href={url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-8 h-8 rounded-md border border-white/[0.08] flex items-center justify-center text-text-dim hover:text-text-primary hover:border-white/[0.15] transition-colors"
-                                    aria-label={key}
-                                >
-                                    {socialIcons[key]}
-                                </a>
-                            ))}
-                        </div>
                     </motion.div>
 
                     <motion.div variants={fadeInUp} className="md:col-span-2">

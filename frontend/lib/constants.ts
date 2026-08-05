@@ -61,6 +61,54 @@ export const OPERATE_SERVICES = [
     },
 ] as const;
 
+export const BUILD_SERVICES_INDIA = [
+    {
+        title: "Website Development",
+        description: "High-performance business websites built for speed, SEO, and conversions.",
+        price: "From ₹25,000",
+        items: [
+            { name: "Business website (3–5 pages)", price: "₹25,000", billing: "one-time" as const },
+            { name: "Premium website + animations", price: "₹40,000", billing: "one-time" as const },
+            { name: "E-commerce / custom web app", price: "₹50,000+", billing: "one-time" as const },
+            { name: "Website care & updates", price: "From ₹20,000/mo", billing: "monthly" as const },
+        ],
+    },
+    {
+        title: "SaaS Development",
+        description: "Full-stack SaaS with auth, billing, dashboards, and scalable architecture.",
+        price: "From ₹75,000",
+        items: [
+            { name: "MVP (core features)", price: "₹75,000", billing: "one-time" as const },
+            { name: "Full SaaS platform", price: "₹1,00,000+", billing: "one-time" as const },
+            { name: "Monthly dev retainer", price: "From ₹50,000/mo", billing: "monthly" as const },
+        ],
+    },
+] as const;
+
+export const OPERATE_SERVICES_INDIA = [
+    {
+        title: "AI Chatbots",
+        description: "Conversational agents that qualify leads, handle support, and drive engagement 24/7.",
+        price: "From ₹50,000",
+        items: [
+            { name: "Support chatbot", price: "₹50,000", billing: "one-time" as const },
+            { name: "Multi-channel AI agent", price: "₹85,000", billing: "one-time" as const },
+            { name: "Custom LLM integration", price: "Custom", billing: "one-time" as const },
+            { name: "Chatbot maintenance & tuning", price: "From ₹25,000/mo", billing: "monthly" as const },
+        ],
+    },
+    {
+        title: "AI Automation",
+        description: "Voice assistants, workflow automation, and CRM integrations that eliminate repetitive tasks.",
+        price: "From ₹75,000",
+        items: [
+            { name: "Workflow automation", price: "₹75,000", billing: "one-time" as const },
+            { name: "Voice + CRM integration", price: "₹1,25,000", billing: "one-time" as const },
+            { name: "AI Ops retainer", price: "From ₹40,000/mo", billing: "monthly" as const },
+        ],
+    },
+] as const;
+
 export const PRICING_PACKAGES = [
     {
         name: "Launch",
@@ -167,7 +215,7 @@ export const CAPABILITY_STACK = [
 ] as const;
 
 export const HERO_STATS = [
-    { value: "4", suffix: " wks", label: "avg. delivery" },
+    { value: "1–2", suffix: " wks", label: "avg. delivery" },
     { value: "3", suffix: "×", label: "faster than agencies" },
     { value: "10", suffix: "+", label: "projects shipped" },
 ] as const;
@@ -410,13 +458,6 @@ export const BUDGET_OPTIONS = BUDGET_OPTIONS_GLOBAL;
 export function getBudgetOptions(isIndia: boolean): readonly string[] {
     return isIndia ? BUDGET_OPTIONS_INDIA : BUDGET_OPTIONS_GLOBAL;
 }
-
-export const SOCIAL_LINKS = {
-    twitter: "https://twitter.com/soupai",
-    linkedin: "https://linkedin.com/company/soupai",
-    github: "https://github.com/soupai",
-    instagram: "https://instagram.com/soupai",
-} as const;
 
 export const GLOBAL_ABOUT = {
     tagline: "Smart solutions. Real impact.",

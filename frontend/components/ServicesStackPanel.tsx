@@ -1,12 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BUILD_SERVICES, OPERATE_SERVICES } from "@/lib/constants";
+import {
+    BUILD_SERVICES,
+    BUILD_SERVICES_INDIA,
+    OPERATE_SERVICES,
+    OPERATE_SERVICES_INDIA,
+} from "@/lib/constants";
 import {
     filterServiceCategories,
     type BillingMode,
     type ServiceCategory,
 } from "@/lib/pricing";
+import { useUserCountry } from "@/hooks/useUserCountry";
 
 function ServiceStackRows({
     services,
@@ -55,10 +61,14 @@ type ServicesStackPanelProps = {
 };
 
 export default function ServicesStackPanel({ billingMode = "one-time" }: ServicesStackPanelProps) {
-    const buildServices = filterServiceCategories(BUILD_SERVICES, billingMode);
-    const operateServices = filterServiceCategories(OPERATE_SERVICES, billingMode);
+    const { isIndia } = useUserCountry();
+    const buildCatalog = isIndia ? BUILD_SERVICES_INDIA : BUILD_SERVICES;
+    const operateCatalog = isIndia ? OPERATE_SERVICES_INDIA : OPERATE_SERVICES;
+    const buildServices = filterServiceCategories(buildCatalog, billingMode);
+    const operateServices = filterServiceCategories(operateCatalog, billingMode);
     const buildItemCount = buildServices.reduce((sum, service) => sum + service.items.length, 0);
     const isMonthly = billingMode === "monthly";
+    const currencyLabel = isIndia ? "INR" : "USD";
 
     return (
         <motion.div
@@ -76,7 +86,7 @@ export default function ServicesStackPanel({ billingMode = "one-time" }: Service
                     </span>
                 </div>
                 <span className="text-[10px] text-text-dim shrink-0 hidden sm:inline">
-                    soupai.dev · {isMonthly ? "retainers" : "services"}
+                    soupai.dev · {isMonthly ? "retainers" : "services"} · {currencyLabel}
                 </span>
             </div>
 

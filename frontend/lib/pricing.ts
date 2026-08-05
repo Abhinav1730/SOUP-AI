@@ -71,6 +71,24 @@ export function filterServiceCategories(
         .filter((category) => category.items.length > 0);
 }
 
+export function getPricingCurrencyLabel(isIndia: boolean): "INR" | "USD" {
+    return isIndia ? "INR" : "USD";
+}
+
+export function getPricingFootnote(isIndia: boolean, mode: BillingMode): string {
+    const currency = isIndia ? "INR" : "USD";
+
+    if (mode === "monthly") {
+        return isIndia
+            ? `All retainer prices shown in ${currency} per month. Custom scope available on request.`
+            : `All retainer prices shown in ${currency} per month unless noted. Custom scope available on request.`;
+    }
+
+    return isIndia
+        ? `All prices shown in ${currency}. GST applicable where required. Custom scope available for enterprise projects.`
+        : `All prices shown in ${currency}. Custom scope available for enterprise projects.`;
+}
+
 export function formatPackagePrice(pkg: ResolvedPackage): string {
     if (pkg.price === "Custom") return "Custom";
     return `${pkg.price}${pkg.priceSuffix ?? ""}`;
